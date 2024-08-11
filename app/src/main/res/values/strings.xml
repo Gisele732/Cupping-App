@@ -7,5 +7,9 @@
     <string name="button_logout">Logout</string>
     <string name="landing_message">LOGIN SUCCESSFUL</string>
     <string name="signUpText">No account yet? Sign up!</string>
+    <string name="create_account">Create a new account</string>
+    <string name="email_address">Email address</string>
+    <string name="create_account_btn">Create account</string>
+    <string name="cancel">cancel</string>
 
 </resources>
