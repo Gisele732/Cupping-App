@@ -7,6 +7,18 @@
     android:layout_height="match_parent"
     tools:context=".LandingPage">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/red"
+        app:navigationIcon="@drawable/logo_white_sml"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        app:title=" "
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
     <ImageView
         android:id="@+id/mainImage"
         android:layout_width="wrap_content"

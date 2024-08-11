@@ -11,5 +11,7 @@
     <string name="email_address">Email address</string>
     <string name="create_account_btn">Create account</string>
     <string name="cancel">cancel</string>
+    <string name="create">Create</string>
+    <string name="view">View</string>
 
 </resources>
