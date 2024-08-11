@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText editTextUsername, editTextPassword;
     private Button buttonLogin;
+    Button buttonSignUp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         editTextUsername = findViewById(R.id.editTextUsername);
         editTextPassword = findViewById(R.id.editTextPassword);
         buttonLogin = findViewById(R.id.buttonLogin);
+        buttonSignUp = findViewById(R.id.buttonSignUp);
 
         // Set a click listener for the login button
         buttonLogin.setOnClickListener(new View.OnClickListener() {
@@ -46,6 +48,14 @@ public class MainActivity extends AppCompatActivity {
                     // Failed login
                     Toast.makeText(MainActivity.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+
+        buttonSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, CreateAccount.class);
+                startActivity(intent);
             }
         });
 
