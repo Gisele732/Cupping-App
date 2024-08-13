@@ -16,10 +16,14 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 public class LandingPage extends AppCompatActivity {
 
     Button buttonLogout;
+    Button buttonEditAccount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +41,15 @@ public class LandingPage extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(LandingPage.this, MainActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        buttonEditAccount = findViewById(R.id.buttonEdit);
+
+        buttonEditAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                replaceFragment(new EditProfile());
             }
         });
 
@@ -66,6 +79,13 @@ public class LandingPage extends AppCompatActivity {
                 return (true);
         }
         return (super.onOptionsItemSelected(item));
+    }
+
+    private void replaceFragment(Fragment fragment) {
+        FragmentManager fragmentManager=getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.framelayout, fragment);
+        fragmentTransaction.commit();
     }
 
 }

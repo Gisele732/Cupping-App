@@ -3,7 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/create_account">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/create_account"
+    tools:context=".EditProfile">
+
+    <!-- TODO Fix view disappearing behind toolbar -->
 
     <ImageView
         android:id="@+id/mainImage"
@@ -31,10 +35,10 @@
             android:src="@mipmap/ic_launcher" />
 
         <TextView
-            android:id="@+id/createAccountTitle"
+            android:id="@+id/editAccountTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/create_account"
+            android:text="@string/edit_txt"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="8dp"
             android:fontFamily="@font/alumnisans_bold"
@@ -78,10 +82,10 @@
 
         <com.google.android.material.button.MaterialButton
             style="@style/Widget.AppCompat.Button.Colored"
-            android:id="@+id/buttonCreateAccount"
+            android:id="@+id/buttonEditAccount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/create_account_btn"
+            android:text="@string/save_changes"
             app:backgroundTint="@color/red"/>
 
         <com.google.android.material.button.MaterialButton

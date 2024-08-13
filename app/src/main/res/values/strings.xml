@@ -13,5 +13,12 @@
     <string name="cancel">cancel</string>
     <string name="create">Create</string>
     <string name="view">View</string>
+    <string name="edit_profile">Edit profile</string>
+    <string name="create_cupping_txt">This is the Create Cupping Activity</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="view_cupping_txt">This is the View Cupping Activity</string>
+    <string name="edit_txt">Edit your account information</string>
+    <string name="save_changes">Save changes</string>
 
 </resources>
