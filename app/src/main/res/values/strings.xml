@@ -25,5 +25,6 @@
     <string name="view_roasts">View Roasts</string>
     <string name="view_coffees">View Coffees</string>
     <string name="view_previous_cuppings">View previous Cuppings</string>
+    <string name="dashboard_txt">This is the main user dashboard</string>
 
 </resources>

@@ -24,6 +24,7 @@ public class UserDashboard extends AppCompatActivity {
 
     Button buttonLogout;
     Button buttonEditAccount;
+    Button buttonBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +54,7 @@ public class UserDashboard extends AppCompatActivity {
             }
         });
 
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.landing_page), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -70,7 +72,7 @@ public class UserDashboard extends AppCompatActivity {
 
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.cCupping:Coffee:
+            case R.id.cCupping:
                 Toast.makeText(getApplicationContext(), "Start Create Cupping Activity", Toast.LENGTH_SHORT).show();
                 return true;
 
