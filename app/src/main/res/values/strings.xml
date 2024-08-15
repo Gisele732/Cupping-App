@@ -20,5 +20,10 @@
     <string name="view_cupping_txt">This is the View Cupping Activity</string>
     <string name="edit_txt">Edit your account information</string>
     <string name="save_changes">Save changes</string>
+    <string name="add_a_cupping">Add a Cupping</string>
+    <string name="create_a_form">Create a Form</string>
+    <string name="view_roasts">View Roasts</string>
+    <string name="view_coffees">View Coffees</string>
+    <string name="view_previous_cuppings">View previous Cuppings</string>
 
 </resources>

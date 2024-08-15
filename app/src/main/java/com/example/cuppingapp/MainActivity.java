@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
                 // Implement authentication logic here
                 if (username.equals("Admin") && password.equals("123")) {
                     // Successful login
-                    Intent intent = new Intent(MainActivity.this, LandingPage.class);
+                    Intent intent = new Intent(MainActivity.this, UserDashboard.class);
                     startActivity(intent);
                 } else {
                     // Failed login

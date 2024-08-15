@@ -1,12 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:HTMLCode="http://schemas.android.com/tools">
     <item android:id="@+id/add"
         android:icon="@drawable/baseline_add_24"
         android:title="@string/create"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="ifRoom">
+    <menu>
+        <item android:id="@+id/cCupping" android:title="@string/add_a_cupping" HTMLCode:showAsAction="ifRoom|withText" />
+        <item android:id="@+id/cForm" android:title="@string/create_a_form" HTMLCode:showAsAction="ifRoom|withText" />
+    </menu>
+    </item>
     <item android:id="@+id/view"
         android:icon="@drawable/baseline_preview_24"
         android:title="@string/view"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="ifRoom">
+    <menu>
+        <item android:id="@+id/vCupping" android:title="@string/view_previous_cuppings" HTMLCode:showAsAction="ifRoom|withText" />
+        <item android:id="@+id/vCoffee" android:title="@string/view_coffees" HTMLCode:showAsAction="ifRoom|withText" />
+        <item android:id="@+id/vRoast" android:title="@string/view_roasts" HTMLCode:showAsAction="ifRoom|withText" />
+    </menu>
+    </item>
 </menu>

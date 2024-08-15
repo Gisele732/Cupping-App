@@ -20,7 +20,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-public class LandingPage extends AppCompatActivity {
+public class UserDashboard extends AppCompatActivity {
 
     Button buttonLogout;
     Button buttonEditAccount;
@@ -29,7 +29,7 @@ public class LandingPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_landing_page);
+        setContentView(R.layout.user_dashboard);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         //getSupportActionBar().setIcon(R.drawable.logo_white_sml);
@@ -39,7 +39,7 @@ public class LandingPage extends AppCompatActivity {
         buttonLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LandingPage.this, MainActivity.class);
+                Intent intent = new Intent(UserDashboard.this, MainActivity.class);
                 startActivity(intent);
             }
         });
