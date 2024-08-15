@@ -70,12 +70,24 @@ public class UserDashboard extends AppCompatActivity {
 
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.view:
-                Toast.makeText(getApplicationContext(), "Start View Activity", Toast.LENGTH_SHORT).show();
+            case R.id.cCupping:Coffee:
+                Toast.makeText(getApplicationContext(), "Start Create Cupping Activity", Toast.LENGTH_SHORT).show();
                 return true;
 
-            case R.id.add:
-                Toast.makeText(getApplicationContext(), "Start Add Activity", Toast.LENGTH_SHORT).show();
+            case R.id.cForm:
+                Toast.makeText(getApplicationContext(), "Start Create Form Activity", Toast.LENGTH_SHORT).show();
+                return true;
+
+            case R.id.vCupping:
+                Toast.makeText(getApplicationContext(), "Start View Cuppings Activity", Toast.LENGTH_SHORT).show();
+                return true;
+
+            case R.id.vCoffee:
+                Toast.makeText(getApplicationContext(), "Start View Coffees Activity", Toast.LENGTH_SHORT).show();
+                return true;
+
+            case R.id.vRoast:
+                Toast.makeText(getApplicationContext(), "Start View Roasts Activity", Toast.LENGTH_SHORT).show();
                 return (true);
         }
         return (super.onOptionsItemSelected(item));
