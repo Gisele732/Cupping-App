@@ -36,10 +36,9 @@ public class EditProfile extends Fragment {
             @Override
             public void onClick(View v) {
                 // close the fragment
+                // Pop the fragment from the back stack
                 FragmentManager fragmentManager = getParentFragmentManager();
-                FragmentTransaction transaction = fragmentManager.beginTransaction();
-                transaction.remove(EditProfile.this);  // Remove the current fragment
-                transaction.commit();
+                fragmentManager.popBackStack();  // This will trigger the exit animation
             }
         });
         

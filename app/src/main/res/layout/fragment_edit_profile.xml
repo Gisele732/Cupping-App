@@ -5,9 +5,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/edit_account"
-    tools:context=".EditProfile">
-
-    <!-- TODO Fix view disappearing behind toolbar -->
+    tools:context=".EditProfile"
+    android:background="@color/white">
 
     <ImageView
         android:id="@+id/mainImage"

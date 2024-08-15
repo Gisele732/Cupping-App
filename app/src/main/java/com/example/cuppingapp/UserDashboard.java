@@ -7,7 +7,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -24,7 +26,10 @@ public class UserDashboard extends AppCompatActivity {
 
     Button buttonLogout;
     Button buttonEditAccount;
-    Button buttonBack;
+    ListView previousCuppings;
+    ArrayAdapter arrayAdapter;
+    private String[] cuppings = {"02/02/2024 - Peru El Chaupe", "03/02/2024 - Test filter roasts",
+                    "04/02/2024 - Espresso Blends", "05/02/2024 - Cafe Imports Samples"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +65,10 @@ public class UserDashboard extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        previousCuppings=findViewById(R.id.previousCuppings);
+        arrayAdapter=new ArrayAdapter(this, android.R.layout.simple_list_item_1, cuppings);
+        previousCuppings.setAdapter(arrayAdapter);
     }
 
     @Override
@@ -98,7 +107,17 @@ public class UserDashboard extends AppCompatActivity {
     private void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager=getSupportFragmentManager();
         FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+
+        // Set custom animations for entering and exiting the fragment
+        fragmentTransaction.setCustomAnimations(
+                R.anim.slide_in_right,  // Enter animation
+                R.anim.slide_out_left,  // Exit animation
+                R.anim.slide_in_left,   // Pop Enter animation (when coming back)
+                R.anim.slide_out_right  // Pop Exit animation (when going back)
+        );
+
         fragmentTransaction.replace(R.id.framelayout, fragment);
+        fragmentTransaction.addToBackStack(null);  // Add this transaction to the back stack
         fragmentTransaction.commit();
     }
 
