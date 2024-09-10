@@ -25,29 +25,26 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
-        // Initialize UI elements
-        editTextUsername = findViewById(R.id.editTextUsername);
-        editTextPassword = findViewById(R.id.editTextPassword);
+        // Initialize UI elements\
         buttonLogin = findViewById(R.id.buttonLogin);
         buttonSignUp = findViewById(R.id.buttonSignUp);
 
         // Set a click listener for the login button
-        buttonLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Retrieve entered username and password
-                String username = editTextUsername.getText().toString();
-                String password = editTextPassword.getText().toString();
+        buttonLogin.setOnClickListener(view -> {
+            editTextUsername = findViewById(R.id.editTextUsername);
+            editTextPassword = findViewById(R.id.editTextPassword);
 
-                // Implement authentication logic here
-                if (username.equals("Admin") && password.equals("123")) {
-                    // Successful login
-                    Intent intent = new Intent(MainActivity.this, UserDashboard.class);
-                    startActivity(intent);
-                } else {
-                    // Failed login
-                    Toast.makeText(MainActivity.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
-                }
+            String username = editTextUsername.getText().toString();
+            String password = editTextPassword.getText().toString();
+
+            UserDao userDao = new UserDao(this);
+            boolean isValid = userDao.checkUser(username, password);
+
+            if (isValid) {
+                Intent intent = new Intent(MainActivity.this, UserDashboard.class);
+                startActivity(intent);
+            } else {
+                Toast.makeText(MainActivity.this, "Invalid credentials", Toast.LENGTH_SHORT).show();
             }
         });
 
