@@ -22,7 +22,7 @@
     <FrameLayout
         android:id="@+id/framelayout"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="match_parent"
         android:layout_below="@id/toolbar">
 
         <ListView
@@ -36,23 +36,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true">
 
-        <TextView
-            android:id="@+id/LandingTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/landing_message"
-            android:layout_centerHorizontal="true"
-            android:fontFamily="monospace"
-            android:textColor="@color/red"
-            android:textAllCaps="true"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:textAlignment="center"/>
-
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/LandingTitle">
+            android:layout_height="wrap_content">
 
             <Button
                 android:id="@+id/buttonEdit"
@@ -60,6 +46,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/edit_profile"
                 android:textSize="15sp"
+                android:textColor="@color/white"
                 android:backgroundTint="@color/red"
                 android:layout_marginStart="20dp"/>
 
@@ -69,6 +56,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/button_logout"
                 android:textSize="15sp"
+                android:textColor="@color/white"
                 android:backgroundTint="@color/dark_gray"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="20dp"/>

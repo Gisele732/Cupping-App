@@ -1,6 +1,8 @@
 package com.example.cuppingapp;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -41,11 +43,17 @@ public class MainActivity extends AppCompatActivity {
             boolean isValid = userDao.checkUser(username, password);
 
             if (isValid) {
+                // Store the username in SharedPreferences
+                SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("current_user_name", username);
+                editor.apply();  // Save changes
+
+                // Continue to user dashboard
                 Intent intent = new Intent(MainActivity.this, UserDashboard.class);
                 startActivity(intent);
-            } else {
-                Toast.makeText(MainActivity.this, "Invalid credentials", Toast.LENGTH_SHORT).show();
             }
+
         });
 
         buttonSignUp.setOnClickListener(new View.OnClickListener() {

@@ -50,7 +50,7 @@
     <LinearLayout
         android:id="@+id/newAccountForm"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/logo_and_title"
         android:layout_margin="20dp"
@@ -59,7 +59,8 @@
         <EditText
             android:id="@+id/Username"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="wrap_content"
+            android:paddingBottom="20dp"
             android:hint="@string/username"
             android:inputType="text"
             android:textColorHint="@color/dark_gray"/>
@@ -67,16 +68,37 @@
         <EditText
             android:id="@+id/Email"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="wrap_content"
+            android:paddingBottom="20dp"
             android:hint="@string/email_address"
             android:inputType="textEmailAddress"
             android:textColorHint="@color/dark_gray"/>
 
+        <!-- Password fields -->
         <EditText
-            android:id="@+id/Password"
+            android:id="@+id/editCurrentPassword"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:hint="@string/password"
+            android:layout_height="wrap_content"
+            android:paddingBottom="20dp"
+            android:hint="@string/current_password"
+            android:inputType="textPassword"
+            android:textColorHint="@color/dark_gray"/>
+
+        <EditText
+            android:id="@+id/editNewPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="20dp"
+            android:hint="@string/new_password"
+            android:inputType="textPassword"
+            android:textColorHint="@color/dark_gray"/>
+
+        <EditText
+            android:id="@+id/editConfirmPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="20dp"
+            android:hint="@string/confirm_new_password"
             android:inputType="textPassword"
             android:textColorHint="@color/dark_gray"/>
 

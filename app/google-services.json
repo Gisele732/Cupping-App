@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "779427279394",
+    "project_id": "cupping-app-97f7a",
+    "storage_bucket": "cupping-app-97f7a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:779427279394:android:44215eb9af52013b6f907b",
+        "android_client_info": {
+          "package_name": "com.example.cuppingapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAu8BJYeldldZFdtppSZqFesK6AE04v1v0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
