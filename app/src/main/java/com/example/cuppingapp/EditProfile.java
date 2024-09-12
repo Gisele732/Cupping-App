@@ -34,27 +34,22 @@ public class EditProfile extends Fragment {
         editCurrentPassword = view.findViewById(R.id.editCurrentPassword);
         editNewPassword = view.findViewById(R.id.editNewPassword);
         editConfirmPassword = view.findViewById(R.id.editConfirmPassword);
-        Button buttonSave = view.findViewById(R.id.buttonEditAccount);
-        Button buttonCancel = view.findViewById(R.id.buttonBack);
 
         userDao = new UserDao(getContext());
 
-        // Get the current user's username from SharedPreferences
+        // Load the user's current data
         currentUserName = getCurrentUserName();
-        if (currentUserName != null) {
-            loadUserData(currentUserName);  // Load user data into fields
-        } else {
-            Toast.makeText(getContext(), "Failed to load user information", Toast.LENGTH_SHORT).show();
-        }
+        loadUserData(currentUserName);
 
-        // Cancel button to close the fragment
+        Button buttonCancel = view.findViewById(R.id.buttonBack);
         buttonCancel.setOnClickListener(v -> {
+            // Close the fragment
             FragmentManager fragmentManager = getParentFragmentManager();
-            fragmentManager.popBackStack();  // Close fragment
+            fragmentManager.popBackStack();
         });
 
         // Save button listener
-        // Inside the Save button listener
+        Button buttonSave = view.findViewById(R.id.buttonEditAccount);
         buttonSave.setOnClickListener(v -> {
             String newUsername = editUsername.getText().toString();
             String newEmail = editEmail.getText().toString();
@@ -67,7 +62,8 @@ public class EditProfile extends Fragment {
                 return;
             }
 
-            // Verify the current password
+            // TODO: THIS IS NOT WORKING
+            // Verify the current password using the old username
             boolean isCurrentPasswordCorrect = userDao.checkUser(currentUserName, currentPassword);
             if (!isCurrentPasswordCorrect) {
                 Toast.makeText(getContext(), "Current password is incorrect.", Toast.LENGTH_SHORT).show();
@@ -80,8 +76,10 @@ public class EditProfile extends Fragment {
                 return;
             }
 
-            // Update user information and password
-            boolean isUpdated = userDao.updateUser(newUsername, newEmail, newPassword);
+            // If password is correct, proceed with updating the user information
+            String hashedNewPassword = newPassword.isEmpty() ? null : newPassword;
+            boolean isUpdated = userDao.updateUser(newUsername, newEmail, hashedNewPassword);
+
             if (isUpdated) {
                 Toast.makeText(getContext(), "Profile updated successfully!", Toast.LENGTH_SHORT).show();
                 getParentFragmentManager().popBackStack();
@@ -90,6 +88,7 @@ public class EditProfile extends Fragment {
             }
         });
     }
+
 
     // Load user data and set in EditTexts
     private void loadUserData(String username) {

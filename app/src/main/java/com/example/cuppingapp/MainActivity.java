@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         buttonLogin = findViewById(R.id.buttonLogin);
         buttonSignUp = findViewById(R.id.buttonSignUp);
 
+        // TODO WHERE IS MY TOAST MESSAGE FOR UNSUCCESSFUL LOGIN??
         // Set a click listener for the login button
         buttonLogin.setOnClickListener(view -> {
             editTextUsername = findViewById(R.id.editTextUsername);
