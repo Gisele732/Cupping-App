@@ -1,12 +1,12 @@
 package com.example.cuppingapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -22,14 +22,16 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class UserDashboard extends AppCompatActivity {
 
     Button buttonLogout;
     Button buttonEditAccount;
     ListView previousCuppings;
-    ArrayAdapter arrayAdapter;
-    private String[] cuppings = {"02/02/2024 - Peru El Chaupe", "03/02/2024 - Test filter roasts",
-                    "04/02/2024 - Espresso Blends", "05/02/2024 - Cafe Imports Samples"};
+    ArrayAdapter<String> arrayAdapter;
+    private List<String> cuppingDescriptions = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,27 +40,17 @@ public class UserDashboard extends AppCompatActivity {
         setContentView(R.layout.user_dashboard);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        //getSupportActionBar().setIcon(R.drawable.logo_white_sml);
 
         buttonLogout = findViewById(R.id.buttonLogout);
-
-        buttonLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(UserDashboard.this, MainActivity.class);
-                startActivity(intent);
-            }
+        buttonLogout.setOnClickListener(view -> {
+            Intent intent = new Intent(UserDashboard.this, MainActivity.class);
+            startActivity(intent);
         });
 
         buttonEditAccount = findViewById(R.id.buttonEdit);
-
-        buttonEditAccount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                replaceFragment(new EditProfile());
-            }
+        buttonEditAccount.setOnClickListener(view -> {
+            replaceFragment(new EditProfile());
         });
-
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.landing_page), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -66,8 +58,25 @@ public class UserDashboard extends AppCompatActivity {
             return insets;
         });
 
-        previousCuppings=findViewById(R.id.previousCuppings);
-        arrayAdapter=new ArrayAdapter(this, android.R.layout.simple_list_item_1, cuppings);
+        // Initialize ListView for previous cuppings
+        previousCuppings = findViewById(R.id.previousCuppings);
+
+        // Load the last 5 cuppings from the database and update the ListView
+        loadLastFiveCuppings();
+    }
+
+    private void loadLastFiveCuppings() {
+        CuppingDao cuppingDao = new CuppingDao(this);  // Create an instance of CuppingDao
+        List<Cupping> lastFiveCuppings = cuppingDao.getLastFiveCuppings();
+
+        // Convert the Cupping objects to a descriptive string format for display
+        cuppingDescriptions.clear();  // Clear previous entries
+        for (Cupping cupping : lastFiveCuppings) {
+            cuppingDescriptions.add(cupping.getDate() + " - " + cupping.getCoffeeName() + " (Score: " + cupping.getTotalScore() + ")");
+        }
+
+        // Update ListView with cupping descriptions
+        arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, cuppingDescriptions);
         previousCuppings.setAdapter(arrayAdapter);
     }
 
@@ -99,14 +108,14 @@ public class UserDashboard extends AppCompatActivity {
 
             case R.id.vRoast:
                 Toast.makeText(getApplicationContext(), "Start View Roasts Activity", Toast.LENGTH_SHORT).show();
-                return (true);
+                return true;
         }
-        return (super.onOptionsItemSelected(item));
+        return super.onOptionsItemSelected(item);
     }
 
     private void replaceFragment(Fragment fragment) {
-        FragmentManager fragmentManager=getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
         // Set custom animations for entering and exiting the fragment
         fragmentTransaction.setCustomAnimations(
@@ -120,5 +129,4 @@ public class UserDashboard extends AppCompatActivity {
         fragmentTransaction.addToBackStack(null);  // Add this transaction to the back stack
         fragmentTransaction.commit();
     }
-
 }

@@ -27,6 +27,18 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
+        // Initialize the Daos
+        CoffeeDao coffeeDao = new CoffeeDao(this);
+        RoastDao roastDao = new RoastDao(this);
+        CuppingDao cuppingDao = new CuppingDao(this);
+
+        // Insert dummy data only once
+        if (shouldInsertDummyData()) {
+            coffeeDao.insertDummyCoffees();
+            roastDao.insertDummyRoasts();
+            cuppingDao.insertDummyData();
+        }
+
         // Initialize UI elements\
         buttonLogin = findViewById(R.id.buttonLogin);
         buttonSignUp = findViewById(R.id.buttonSignUp);
@@ -70,5 +82,17 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+    }
+
+    // Method to ensure dummy data is inserted only once
+    private boolean shouldInsertDummyData() {
+        SharedPreferences preferences = getSharedPreferences("app_prefs", MODE_PRIVATE);
+        boolean isDataInserted = preferences.getBoolean("dummy_data_inserted", false);
+
+        if (!isDataInserted) {
+            preferences.edit().putBoolean("dummy_data_inserted", true).apply();
+            return true;
+        }
+        return false;
     }
 }
