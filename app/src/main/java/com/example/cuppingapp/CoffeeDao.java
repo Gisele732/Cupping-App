@@ -5,6 +5,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CoffeeDao {
     private DatabaseHelper dbHelper;
 
@@ -47,4 +50,18 @@ public class CoffeeDao {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         return db.query(DatabaseHelper.TABLE_COFFEES, null, null, null, null, null, null);
     }
+
+    public List<String> getAllCoffeeNames() {
+        List<String> coffeeNames = new ArrayList<>();
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor cursor = db.query(DatabaseHelper.TABLE_COFFEES, new String[]{"name"}, null, null, null, null, null);
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                coffeeNames.add(cursor.getString(cursor.getColumnIndexOrThrow("name")));
+            } while (cursor.moveToNext());
+            cursor.close();
+        }
+        return coffeeNames;
+    }
+
 }

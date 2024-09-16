@@ -51,7 +51,7 @@ public class CuppingDao {
                     (int)(Math.random() * 10),  // Random Bitterness score (0-9)
                     (int)(Math.random() * 10),  // Random Tactile score (0-9)
                     (int)(Math.random() * 10),  // Random Balance score (0-9)
-                    "Cupping Test Notes " + i); // Test Notes
+                     "Cupping Test Notes " + i); // Test Notes
         }
     }
 

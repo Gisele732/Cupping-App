@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Coffee Spinner (Dropdown) -->
+        <Spinner
+            android:id="@+id/spinnerCoffee"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Select Coffee" />
+
+        <!-- Roast Spinner (Dropdown) -->
+        <Spinner
+            android:id="@+id/spinnerRoast"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Select Roast" />
+
+        <!-- Date Picker -->
+        <EditText
+            android:id="@+id/editDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Select Date"
+            android:focusable="false"
+            android:clickable="true" />
+
+        <!-- Acidity SeekBar -->
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Acidity" />
+        <SeekBar
+            android:id="@+id/seekBarAcidity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="5" />
+
+        <!-- Flavour SeekBar -->
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Flavour" />
+        <SeekBar
+            android:id="@+id/seekBarFlavour"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="5" />
+
+        <!-- Sweetness SeekBar -->
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sweetness" />
+        <SeekBar
+            android:id="@+id/seekBarSweetness"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="5" />
+
+        <!-- Bitterness SeekBar -->
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bitterness" />
+        <SeekBar
+            android:id="@+id/seekBarBitterness"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="5" />
+
+        <!-- Tactile SeekBar -->
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tactile" />
+        <SeekBar
+            android:id="@+id/seekBarTactile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="5" />
+
+        <!-- Balance SeekBar -->
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Balance" />
+        <SeekBar
+            android:id="@+id/seekBarBalance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="5" />
+
+        <!-- Notes -->
+        <EditText
+            android:id="@+id/editNotes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Notes"
+            android:inputType="text" />
+
+        <!-- Save Button -->
+        <Button
+            android:id="@+id/buttonSaveCupping"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Save Cupping" />
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/summaryDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date: " />
+
+    <TextView
+        android:id="@+id/summaryCoffee"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Coffee: " />
+
+    <TextView
+        android:id="@+id/summaryRoast"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Roast: " />
+
+    <TextView
+        android:id="@+id/summaryAcidity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Acidity: " />
+
+    <TextView
+        android:id="@+id/summaryFlavour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Flavour: " />
+
+    <TextView
+        android:id="@+id/summarySweetness"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sweetness: " />
+
+    <TextView
+        android:id="@+id/summaryBitterness"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bitterness: " />
+
+    <TextView
+        android:id="@+id/summaryTactile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tactile: " />
+
+    <TextView
+        android:id="@+id/summaryBalance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Balance: " />
+
+    <TextView
+        android:id="@+id/summaryTotalScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total Score: " />
+
+    <TextView
+        android:id="@+id/summaryNotes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Notes: " />
+
+    <Button
+        android:id="@+id/buttonDone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Done" />
+</LinearLayout>

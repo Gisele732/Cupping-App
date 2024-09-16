@@ -5,6 +5,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class RoastDao {
     private DatabaseHelper dbHelper;
 
@@ -46,4 +49,18 @@ public class RoastDao {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         return db.query(DatabaseHelper.TABLE_ROASTS, null, null, null, null, null, null);
     }
+
+    public List<String> getAllRoastNames() {
+        List<String> roastNames = new ArrayList<>();
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor cursor = db.query(DatabaseHelper.TABLE_ROASTS, new String[]{"batchNumber"}, null, null, null, null, null);
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                roastNames.add(cursor.getString(cursor.getColumnIndexOrThrow("batchNumber")));
+            } while (cursor.moveToNext());
+            cursor.close();
+        }
+        return roastNames;
+    }
+
 }

@@ -91,7 +91,8 @@ public class UserDashboard extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.cCupping:
-                Toast.makeText(getApplicationContext(), "Start Create Cupping Activity", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(UserDashboard.this, AddCupping.class);
+                startActivity(intent);
                 return true;
 
             case R.id.cForm:
