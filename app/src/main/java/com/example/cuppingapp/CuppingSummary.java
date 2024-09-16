@@ -9,8 +9,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class CuppingSummary extends AppCompatActivity {
 
-    private TextView summaryDate, summaryCoffee, summaryRoast, summaryAcidity, summaryFlavour, summarySweetness, summaryBitterness, summaryTactile, summaryBalance, summaryTotalScore, summaryNotes;
-    private Button buttonDone;
+    private TextView summaryCoffee;
+    private TextView summaryRoast;
+    private TextView summaryAcidity;
+    private TextView summaryFlavour;
+    private TextView summarySweetness;
+    private TextView summaryBitterness;
+    private TextView summaryTactile;
+    private TextView summaryBalance;
+    private TextView summaryTotalScore;
+    private TextView summaryNotes;
+    private Button buttonAddAnother;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,7 +27,7 @@ public class CuppingSummary extends AppCompatActivity {
         setContentView(R.layout.activity_cupping_summary);
 
         // Initialize UI components
-        summaryDate = findViewById(R.id.summaryDate);
+        TextView summaryDate = findViewById(R.id.summaryDate);
         summaryCoffee = findViewById(R.id.summaryCoffee);
         summaryRoast = findViewById(R.id.summaryRoast);
         summaryAcidity = findViewById(R.id.summaryAcidity);
@@ -29,7 +38,7 @@ public class CuppingSummary extends AppCompatActivity {
         summaryBalance = findViewById(R.id.summaryBalance);
         summaryTotalScore = findViewById(R.id.summaryTotalScore);
         summaryNotes = findViewById(R.id.summaryNotes);
-        buttonDone = findViewById(R.id.buttonDone);
+        buttonAddAnother = findViewById(R.id.buttonAddAnother);
 
         // Get data passed from the previous activity
         Intent intent = getIntent();
@@ -59,6 +68,16 @@ public class CuppingSummary extends AppCompatActivity {
         summaryNotes.setText("Notes: " + notes);
 
         // Done button listener
-        buttonDone.setOnClickListener(v -> finish());  // Go back to the previous screen
+        buttonAddAnother.setOnClickListener(v -> finish());  // Go back to the previous screen
+
+        Button buttonBackToDashboard = findViewById(R.id.buttonBackToDashboard);
+        buttonBackToDashboard.setOnClickListener(view -> {
+            // Navigate back to the UserDashboard
+            Intent intent2 = new Intent(CuppingSummary.this, UserDashboard.class);
+            intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent2);
+            finish(); // Finish the current activity
+        });
+
     }
 }

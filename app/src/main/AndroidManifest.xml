@@ -19,6 +19,7 @@
         <activity
             android:name=".AddCupping"
             android:exported="false" />
+        <activity android:name=".CuppingSummary" />
         <activity
             android:name=".UserDashboard"
             android:exported="false" />

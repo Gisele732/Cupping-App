@@ -21,7 +21,6 @@ public class AddCupping extends AppCompatActivity {
     private Spinner spinnerCoffee, spinnerRoast;
     private EditText editDate, editNotes;
     private SeekBar seekBarAcidity, seekBarFlavour, seekBarSweetness, seekBarBitterness, seekBarTactile, seekBarBalance;
-    private Button buttonSaveCupping;
     private CuppingDao cuppingDao;
     private CoffeeDao coffeeDao;
     private RoastDao roastDao;
@@ -43,7 +42,7 @@ public class AddCupping extends AppCompatActivity {
         seekBarBitterness = findViewById(R.id.seekBarBitterness);
         seekBarTactile = findViewById(R.id.seekBarTactile);
         seekBarBalance = findViewById(R.id.seekBarBalance);
-        buttonSaveCupping = findViewById(R.id.buttonSaveCupping);
+        Button buttonSaveCupping = findViewById(R.id.buttonSaveCupping);
 
         // Initialize the DAOs
         cuppingDao = new CuppingDao(this);
@@ -59,6 +58,13 @@ public class AddCupping extends AppCompatActivity {
 
         // Save button click listener
         buttonSaveCupping.setOnClickListener(v -> saveCupping());
+
+        Button buttonCancel = findViewById(R.id.buttonCancel);
+        buttonCancel.setOnClickListener(view -> {
+            // Close the activity and return to the previous screen
+            finish();
+        });
+
     }
 
     private void showDatePicker() {
@@ -133,5 +139,6 @@ public class AddCupping extends AppCompatActivity {
             Toast.makeText(this, "Failed to add cupping", Toast.LENGTH_SHORT).show();
         }
     }
+
 
 }

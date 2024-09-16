@@ -21,7 +21,7 @@ public class CuppingDao {
         ContentValues values = new ContentValues();
 
         // Calculate the totalScore by averaging the attributes
-        float totalScore = (acidity + flavour + sweetness + bitterness + tactile + balance) / 1.0f;
+        float totalScore = (acidity + flavour + sweetness + bitterness + tactile + balance) / 6;
 
         values.put(DatabaseHelper.COLUMN_CUPPING_COFFEE_ID, coffeeID);
         values.put(DatabaseHelper.COLUMN_CUPPING_ROAST_ID, roastID);

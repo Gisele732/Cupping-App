@@ -29,5 +29,20 @@
     <string name="current_password">Current Password</string>
     <string name="new_password">New Password</string>
     <string name="confirm_new_password">Confirm New Password</string>
+    <string name="add_cupping_text">Add a new cupping</string>
+    <string name="back_to_dashboard">Back to Dashboard</string>
+    <string name="cupping_summary">Cupping summary</string>
+    <string name="date">Date:</string>
+    <string name="coffee">Coffee:</string>
+    <string name="roast">Roast:</string>
+    <string name="acidity">Acidity:</string>
+    <string name="flavour">Flavour:</string>
+    <string name="sweetness">Sweetness:</string>
+    <string name="bitterness">Bitterness:</string>
+    <string name="tactile">Tactile:</string>
+    <string name="balance">Balance:</string>
+    <string name="total_score">Total Score:</string>
+    <string name="notes">Notes:</string>
+    <string name="add_another_cupping">Add another cupping</string>
 
 </resources>
