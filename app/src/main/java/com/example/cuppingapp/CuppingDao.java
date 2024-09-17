@@ -102,7 +102,7 @@ public class CuppingDao {
         return null;
     }
 
-    public List<Cupping> getLastFiveCuppings() {
+    public List<Cupping> shortListCuppings() {
         List<Cupping> cuppingList = new ArrayList<>();
         SQLiteDatabase db = dbHelper.getReadableDatabase();
 
@@ -110,7 +110,7 @@ public class CuppingDao {
         String query = "SELECT c.cuppingID, c.date, c.totalScore, cf.name AS coffeeName " +
                 "FROM " + DatabaseHelper.TABLE_CUPPINGS + " c " +
                 "JOIN " + DatabaseHelper.TABLE_COFFEES + " cf ON c.coffeeID = cf.coffeeID " +
-                "ORDER BY c.date DESC LIMIT 5";
+                "ORDER BY c.date DESC";
 
         Cursor cursor = db.rawQuery(query, null);
         if (cursor.moveToFirst()) {
@@ -157,6 +157,14 @@ public class CuppingDao {
         return rowsAffected > 0;
     }
 
+    public boolean deleteCupping(int cuppingID) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
 
+        // Delete the cupping by cuppingID
+        int rowsDeleted = db.delete(DatabaseHelper.TABLE_CUPPINGS, "cuppingID = ?", new String[]{String.valueOf(cuppingID)});
+
+        // Return true if one or more rows were deleted, indicating success
+        return rowsDeleted > 0;
+    }
 
 }

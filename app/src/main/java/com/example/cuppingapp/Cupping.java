@@ -108,4 +108,6 @@ public class Cupping implements Serializable {
     public void setNotes(String i) {
         this.notes = i;
     }
+    public void setDate(String newDate) { this.date = newDate; }
+    public void setTotalScore(float totalScore) { this.totalScore = totalScore; }
 }

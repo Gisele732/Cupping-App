@@ -27,8 +27,6 @@ public class UserDashboard extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
-
         imgCuppings = findViewById(R.id.imgCuppings);
         imgCoffees = findViewById(R.id.imgCoffees);
         imgRoasts = findViewById(R.id.imgRoasts);
