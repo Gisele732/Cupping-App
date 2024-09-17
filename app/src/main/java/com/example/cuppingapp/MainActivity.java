@@ -1,5 +1,7 @@
 package com.example.cuppingapp;
 
+import static java.security.AccessController.getContext;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -65,6 +67,9 @@ public class MainActivity extends AppCompatActivity {
                 // Continue to user dashboard
                 Intent intent = new Intent(MainActivity.this, UserDashboard.class);
                 startActivity(intent);
+            } else
+            {
+                Toast.makeText(this, "Invalid Login", Toast.LENGTH_SHORT).show();
             }
 
         });

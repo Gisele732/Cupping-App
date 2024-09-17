@@ -128,6 +128,7 @@ public class CuppingDetailFragment extends Fragment {
         cupping.setBalance(newBalance);
 
         // Calculate the new total score based on the updated attributes
+        //Todo: totalScore is not calculated properly?
         float totalScore = (newAcidity + newFlavour + newSweetness + newBitterness + newTactile + newBalance) / 6.0f;
         cupping.setTotalScore(totalScore);
 
