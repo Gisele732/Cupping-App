@@ -7,10 +7,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
+import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -27,19 +25,57 @@ public class ViewCuppings extends AppCompatActivity {
     CuppingAdapter cuppingAdapter;
     private List<Cupping> cuppingList;
     private List<String> cuppingDescriptions = new ArrayList<>();
+    private CuppingDao cuppingDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_cuppings);
+        cuppingDao = new CuppingDao(this);
 
         // Set up the toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         listViewCuppings = findViewById(R.id.listViewCuppings);
+        Button buttonAddCupping = findViewById(R.id.buttonAddCupping);
 
+        // Handle Add Cupping button click
+        buttonAddCupping.setOnClickListener(v -> {
+            Intent intent = new Intent(ViewCuppings.this, AddCuppingActivity.class);
+            startActivity(intent);
+        });
         // Load the cuppings list from the database and update the ListView
+        loadCuppingsList();
+
+        // Set item click listener for the ListView
+        listViewCuppings.setOnItemClickListener((parent, view, position, id) -> {
+            Cupping selectedCupping = (Cupping) parent.getItemAtPosition(position);
+
+            // Create the CuppingDetailFragment and pass the Cupping object
+            CuppingDetailFragment fragment = new CuppingDetailFragment();
+
+            // Retrieve full details of the cupping using getCuppingById
+            Cupping fullCupping = cuppingDao.getCuppingById(selectedCupping.getCuppingID());
+
+            // Pass the selectedCupping to the fragment via Bundle
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("selectedCupping", fullCupping); // Ensure Cupping implements Serializable
+            fragment.setArguments(bundle);
+
+            // Replace the fragment container with the details fragment
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.framelayout, fragment);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Reload the cupping list to ensure the view is updated
         loadCuppingsList();
     }
 
@@ -47,32 +83,16 @@ public class ViewCuppings extends AppCompatActivity {
         CuppingDao cuppingDao = new CuppingDao(this);  // Create an instance of CuppingDao
         cuppingList = cuppingDao.shortListCuppings();  // Get the cupping data
 
-        // Update ListView with cupping descriptions
-        cuppingAdapter = new CuppingAdapter(this, cuppingList);
-        listViewCuppings.setAdapter(cuppingAdapter);
-    }
-
-    public void openEditCuppingFragment(Cupping cupping) {
-        // Create the fragment to edit the cupping
-        CuppingDetailFragment fragment = new CuppingDetailFragment();
-
-        // Pass the cupping details to the fragment
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("selectedCupping", cupping);
-        fragment.setArguments(bundle);
-
-        // Display the fragment
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.setCustomAnimations(
-                R.anim.slide_in_right,  // Enter animation
-                R.anim.slide_out_left,  // Exit animation
-                R.anim.slide_in_left,   // Pop Enter animation (when coming back)
-                R.anim.slide_out_right  // Pop Exit animation (when going back)
-        );
-        fragmentTransaction.replace(R.id.framelayout, fragment);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
+        // Check if the list is empty and make sure ListView is visible
+        if (cuppingList != null && !cuppingList.isEmpty()) {
+            listViewCuppings.setVisibility(View.VISIBLE);
+            // Update ListView with cupping descriptions
+            cuppingAdapter = new CuppingAdapter(this, cuppingList);
+            listViewCuppings.setAdapter(cuppingAdapter);
+        } else {
+            // Optionally, handle the case where the list is empty
+            listViewCuppings.setVisibility(View.GONE); // Hide the ListView if no data
+        }
     }
 
     @Override
@@ -88,7 +108,7 @@ public class ViewCuppings extends AppCompatActivity {
         // Handle action bar item clicks here
         switch (item.getItemId()) {
             case R.id.home:
-                // Redirect to UserDashboard (already on UserDashboard in this case, so maybe refresh)
+                // Redirect to UserDashboard
                 Intent dashboardIntent = new Intent(this, UserDashboard.class);
                 startActivity(dashboardIntent);
                 return true;
@@ -126,4 +146,23 @@ public class ViewCuppings extends AppCompatActivity {
         fragmentTransaction.addToBackStack(null);  // Add this transaction to the back stack
         fragmentTransaction.commit();
     }
+
+    public void openEditCuppingFragment(Cupping cupping) {
+        // Create the CuppingDetailFragment and pass the Cupping object
+        CuppingDetailFragment fragment = new CuppingDetailFragment();
+
+        // Pass the selected cupping to the fragment via Bundle
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("selectedCupping", cupping); // Ensure Cupping implements Serializable
+        fragment.setArguments(bundle);
+
+        // Replace the fragment container with the CuppingDetailFragment
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        fragmentTransaction.replace(R.id.framelayout, fragment); // framelayout is where the fragment will be displayed
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
+
 }

@@ -28,6 +28,19 @@
         android:layout_height="match_parent"
         android:divider="@android:color/darker_gray"
         android:dividerHeight="1dp" />
+
+        <Button
+            android:id="@+id/buttonAddCupping"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add_cupping"
+            android:backgroundTint="@color/red"
+            android:textColor="@android:color/white"
+            android:layout_margin="16dp"
+            android:textSize="20sp"
+            android:layout_gravity="bottom|right"/>
+
     </FrameLayout>
+
 </LinearLayout>
 

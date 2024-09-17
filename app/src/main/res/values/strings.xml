@@ -50,5 +50,10 @@
     <string name="profile_description">View profile information</string>
     <string name="logout">Logout</string>
     <string name="home">Return to homepage</string>
+    <string name="add_cupping">Add Cupping</string>
+    <string name="coffee_id">Coffee ID</string>
+    <string name="roast_id">Roast ID</string>
+    <string name="createDate">Date</string>
+    <string name="createAcidity">Acidity</string>
 
 </resources>

@@ -1,147 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/red"
-        app:navigationIcon="@drawable/logo_white_sml"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
-        app:title=" "
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
-
-    <TextView
-        android:id="@+id/addCuppingTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/add_cupping_text"
-        android:layout_gravity="center_vertical"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:fontFamily="@font/alumnisans_bold"
-        android:textColor="@color/red"
-        android:textAllCaps="true"
-        android:textSize="30sp"
-        android:layout_below="@id/toolbar"/>
+    android:padding="16dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp"
-        android:layout_below="@+id/addCuppingTitle">
+        android:orientation="vertical">
 
-
-        <!-- Coffee Spinner (Dropdown) -->
-        <Spinner
-            android:id="@+id/spinnerCoffee"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <!-- Roast Spinner (Dropdown) -->
-        <Spinner
-            android:id="@+id/spinnerRoast"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <!-- Date Picker -->
         <EditText
-            android:id="@+id/editDate"
+            android:id="@+id/editTextCoffee"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Select Date"
-            android:focusable="false"
-            android:clickable="true" />
+            android:hint="@string/coffee_id"
+            android:inputType="number" />
 
-        <!-- Acidity SeekBar -->
-        <TextView android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Acidity" />
-        <SeekBar
-            android:id="@+id/seekBarAcidity"
+        <EditText
+            android:id="@+id/editTextRoast"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:max="5" />
+            android:hint="@string/roast_id"
+            android:inputType="number" />
 
-        <!-- Flavour SeekBar -->
-        <TextView android:layout_width="wrap_content"
+        <EditText
+            android:id="@+id/editTextDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/createDate" />
+
+        <!-- Acidity Rating -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/createAcidity" />
+
+        <RatingBar
+            android:id="@+id/ratingBarAcidity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:stepSize="1" />
+
+        <!-- Flavour Rating -->
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Flavour" />
-        <SeekBar
-            android:id="@+id/seekBarFlavour"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:max="5" />
 
-        <!-- Sweetness SeekBar -->
-        <TextView android:layout_width="wrap_content"
+        <RatingBar
+            android:id="@+id/ratingBarFlavour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:stepSize="1" />
+
+        <!-- Sweetness Rating -->
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Sweetness" />
-        <SeekBar
-            android:id="@+id/seekBarSweetness"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:max="5" />
 
-        <!-- Bitterness SeekBar -->
-        <TextView android:layout_width="wrap_content"
+        <RatingBar
+            android:id="@+id/ratingBarSweetness"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:stepSize="1" />
+
+        <!-- Bitterness Rating -->
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Bitterness" />
-        <SeekBar
-            android:id="@+id/seekBarBitterness"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:max="5" />
 
-        <!-- Tactile SeekBar -->
-        <TextView android:layout_width="wrap_content"
+        <RatingBar
+            android:id="@+id/ratingBarBitterness"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:stepSize="1" />
+
+        <!-- Tactile Rating -->
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Tactile" />
-        <SeekBar
-            android:id="@+id/seekBarTactile"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:max="5" />
 
-        <!-- Balance SeekBar -->
-        <TextView android:layout_width="wrap_content"
+        <RatingBar
+            android:id="@+id/ratingBarTactile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:stepSize="1" />
+
+        <!-- Balance Rating -->
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Balance" />
-        <SeekBar
-            android:id="@+id/seekBarBalance"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:max="5" />
 
-        <!-- Notes -->
+        <RatingBar
+            android:id="@+id/ratingBarBalance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:stepSize="1" />
+
+        <!-- Notes input -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Notes" />
+
         <EditText
-            android:id="@+id/editNotes"
+            android:id="@+id/editTextNotes"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Notes"
-            android:inputType="text"
-            android:layout_marginBottom="20dp"/>
+            android:layout_height="wrap_content" />
 
-        <!-- Save Button -->
         <Button
             android:id="@+id/buttonSaveCupping"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Save Cupping" />
-
-        <Button
-            android:id="@+id/buttonCancel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Cancel"
-            android:backgroundTint="@color/dark_gray"
-            android:layout_gravity="left" />
-
     </LinearLayout>
-</RelativeLayout>
+</ScrollView>

@@ -3,6 +3,7 @@ package com.example.cuppingapp;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -97,6 +98,8 @@ public class CuppingDetailFragment extends Fragment {
         ratingBarBitterness.setRating(cupping.getBitterness());
         ratingBarTactile.setRating(cupping.getTactile());
         ratingBarBalance.setRating(cupping.getBalance());
+        Log.d("CuppingDetailFragment", "Cupping Data: " + cupping.getDate() + ", " + cupping.getAcidity());
+
     }
 
     private void updateCupping() {

@@ -79,10 +79,16 @@ public class CuppingDao {
 
     public Cupping getCuppingById(int cuppingID) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        Cursor cursor = db.query("cuppings", null, "cuppingID = ?", new String[]{String.valueOf(cuppingID)}, null, null, null);
+
+        // Updated query to join the coffees table and fetch the coffeeName
+        String query = "SELECT c.cuppingID, c.coffeeID, c.roastID, c.date, c.acidity, c.flavour, c.sweetness, c.bitterness, c.tactile, c.balance, c.totalScore, c.notes, cf.name AS coffeeName " +
+                "FROM cuppings c " +
+                "JOIN coffees cf ON c.coffeeID = cf.coffeeID " +
+                "WHERE c.cuppingID = ?";
+
+        Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(cuppingID)});
 
         if (cursor != null && cursor.moveToFirst()) {
-            // Get cupping details
             int coffeeID = cursor.getInt(cursor.getColumnIndexOrThrow("coffeeID"));
             int roastID = cursor.getInt(cursor.getColumnIndexOrThrow("roastID"));
             String date = cursor.getString(cursor.getColumnIndexOrThrow("date"));
@@ -92,13 +98,16 @@ public class CuppingDao {
             int bitterness = cursor.getInt(cursor.getColumnIndexOrThrow("bitterness"));
             int tactile = cursor.getInt(cursor.getColumnIndexOrThrow("tactile"));
             int balance = cursor.getInt(cursor.getColumnIndexOrThrow("balance"));
-            float totalScore = cursor.getFloat((cursor.getColumnIndexOrThrow("totalScore")));
+            float totalScore = cursor.getFloat(cursor.getColumnIndexOrThrow("totalScore"));
             String notes = cursor.getString(cursor.getColumnIndexOrThrow("notes"));
             String coffeeName = cursor.getString(cursor.getColumnIndexOrThrow("coffeeName"));
 
             cursor.close();
+
+            // Return the cupping object with all details
             return new Cupping(cuppingID, coffeeID, roastID, date, acidity, flavour, sweetness, bitterness, tactile, balance, totalScore, notes, coffeeName);
         }
+
         return null;
     }
 
