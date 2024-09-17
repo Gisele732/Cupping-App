@@ -56,9 +56,50 @@ public class CuppingDao {
     }
 
     // Fetch all cuppings
-    public Cursor getAllCuppings() {
+    public List<Cupping> getAllCuppings() {
+        List<Cupping> cuppings = new ArrayList<>();
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        return db.query(DatabaseHelper.TABLE_CUPPINGS, null, null, null, null, null, null);
+        String query = "SELECT c.cuppingID, c.date, c.totalScore, cf.name AS coffeeName FROM cuppings c JOIN coffees cf ON c.coffeeID = cf.coffeeID ORDER BY c.date DESC";
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                int cuppingID = cursor.getInt(cursor.getColumnIndexOrThrow("cuppingID"));
+                String date = cursor.getString(cursor.getColumnIndexOrThrow("date"));
+                float totalScore = cursor.getFloat(cursor.getColumnIndexOrThrow("totalScore"));
+                String coffeeName = cursor.getString(cursor.getColumnIndexOrThrow("coffeeName"));
+
+                Cupping cupping = new Cupping(cuppingID, coffeeName, date, totalScore);
+                cuppings.add(cupping);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return cuppings;
+    }
+
+    public Cupping getCuppingById(int cuppingID) {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor cursor = db.query("cuppings", null, "cuppingID = ?", new String[]{String.valueOf(cuppingID)}, null, null, null);
+
+        if (cursor != null && cursor.moveToFirst()) {
+            // Get cupping details
+            int coffeeID = cursor.getInt(cursor.getColumnIndexOrThrow("coffeeID"));
+            int roastID = cursor.getInt(cursor.getColumnIndexOrThrow("roastID"));
+            String date = cursor.getString(cursor.getColumnIndexOrThrow("date"));
+            int acidity = cursor.getInt(cursor.getColumnIndexOrThrow("acidity"));
+            int flavour = cursor.getInt(cursor.getColumnIndexOrThrow("flavour"));
+            int sweetness = cursor.getInt(cursor.getColumnIndexOrThrow("sweetness"));
+            int bitterness = cursor.getInt(cursor.getColumnIndexOrThrow("bitterness"));
+            int tactile = cursor.getInt(cursor.getColumnIndexOrThrow("tactile"));
+            int balance = cursor.getInt(cursor.getColumnIndexOrThrow("balance"));
+            float totalScore = cursor.getFloat((cursor.getColumnIndexOrThrow("totalScore")));
+            String notes = cursor.getString(cursor.getColumnIndexOrThrow("notes"));
+            String coffeeName = cursor.getString(cursor.getColumnIndexOrThrow("coffeeName"));
+
+            cursor.close();
+            return new Cupping(cuppingID, coffeeID, roastID, date, acidity, flavour, sweetness, bitterness, tactile, balance, totalScore, notes, coffeeName);
+        }
+        return null;
     }
 
     public List<Cupping> getLastFiveCuppings() {
@@ -86,6 +127,36 @@ public class CuppingDao {
         cursor.close();
         return cuppingList;
     }
+
+    public boolean updateCupping(Cupping cupping) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        // Set the updated values
+        values.put(DatabaseHelper.COLUMN_COFFEE_ID, cupping.getCoffeeID());
+        values.put(DatabaseHelper.COLUMN_ROAST_ID, cupping.getRoastID());
+        values.put(DatabaseHelper.COLUMN_CUPPING_DATE, cupping.getDate());
+        values.put(DatabaseHelper.COLUMN_CUPPING_ACIDITY, cupping.getAcidity());
+        values.put(DatabaseHelper.COLUMN_CUPPING_FLAVOUR, cupping.getFlavour());
+        values.put(DatabaseHelper.COLUMN_CUPPING_SWEETNESS, cupping.getSweetness());
+        values.put(DatabaseHelper.COLUMN_CUPPING_BITTERNESS, cupping.getBitterness());
+        values.put(DatabaseHelper.COLUMN_CUPPING_TACTILE, cupping.getTactile());
+        values.put(DatabaseHelper.COLUMN_CUPPING_BALANCE, cupping.getBalance());
+        values.put(DatabaseHelper.COLUMN_CUPPING_TOTAL_SCORE, cupping.getTotalScore());
+        values.put(DatabaseHelper.COLUMN_CUPPING_NOTES, cupping.getNotes());
+
+        // Update the cupping in the database, targeting the row by cuppingID
+        int rowsAffected = db.update(
+                DatabaseHelper.TABLE_CUPPINGS,
+                values,
+                DatabaseHelper.COLUMN_CUPPING_ID + " = ?",
+                new String[]{String.valueOf(cupping.getCuppingID())}
+        );
+
+        // Return true if the update was successful
+        return rowsAffected > 0;
+    }
+
 
 
 }

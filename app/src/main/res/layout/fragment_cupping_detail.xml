@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CuppingDetailFragment">
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/Acidity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Acidity: "/>
+
+        <TextView
+            android:id="@+id/textAcidity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+        <TextView
+            android:id="@+id/textFlavour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Flavour: "/>
+
+        <TextView
+            android:id="@+id/textSweetness"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sweetness: "/>
+
+        <TextView
+            android:id="@+id/textBitterness"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bitterness: "/>
+
+        <TextView
+            android:id="@+id/textTactile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tactile: "/>
+
+        <TextView
+            android:id="@+id/textBalance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Balance: "/>
+
+        <TextView
+            android:id="@+id/textTotalScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total Score: "/>
+
+        <TextView
+            android:id="@+id/textNotes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Notes: "/>
+
+        <Button
+            android:id="@+id/buttonEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit" />
+
+        <Button
+            android:id="@+id/buttonBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Back" />
+    </LinearLayout>
+
+
+</FrameLayout>

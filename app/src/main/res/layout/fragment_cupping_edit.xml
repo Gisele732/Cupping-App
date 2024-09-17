@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CuppingEditFragment">
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <EditText
+            android:id="@+id/editAcidity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Acidity" />
+
+        <EditText
+            android:id="@+id/editFlavour"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Flavour" />
+
+        <EditText
+            android:id="@+id/editSweetness"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Sweetness" />
+
+        <EditText
+            android:id="@+id/editBitterness"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Bitterness" />
+
+        <EditText
+            android:id="@+id/editTactile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tactile" />
+
+        <EditText
+            android:id="@+id/editBalance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Balance" />
+
+        <EditText
+            android:id="@+id/editNotes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Notes" />
+
+        <Button
+            android:id="@+id/buttonSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Save" />
+
+        <Button
+            android:id="@+id/buttonBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Back" />
+    </LinearLayout>
+
+
+</FrameLayout>

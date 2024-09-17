@@ -44,5 +44,11 @@
     <string name="total_score">Total Score:</string>
     <string name="notes">Notes:</string>
     <string name="add_another_cupping">Add another cupping</string>
+    <string name="cuppingsDescription">View Cuppings</string>
+    <string name="coffeesDescription">View Coffees</string>
+    <string name="roastsDescription">View Roasts</string>
+    <string name="profile_description">View profile information</string>
+    <string name="logout">Logout</string>
+    <string name="home">Return to homepage</string>
 
 </resources>

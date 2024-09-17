@@ -1,117 +1,93 @@
 package com.example.cuppingapp;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ListView;
-import android.widget.Toast;
+import android.view.View;
+import android.widget.ImageView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class UserDashboard extends AppCompatActivity {
 
-    Button buttonLogout;
-    Button buttonEditAccount;
-    ListView previousCuppings;
-    ArrayAdapter<String> arrayAdapter;
-    private List<String> cuppingDescriptions = new ArrayList<>();
+    ImageView imgCuppings, imgCoffees, imgRoasts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.user_dashboard);
+
+        // Set up the toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        buttonLogout = findViewById(R.id.buttonLogout);
-        buttonLogout.setOnClickListener(view -> {
-            Intent intent = new Intent(UserDashboard.this, MainActivity.class);
-            startActivity(intent);
+
+
+        imgCuppings = findViewById(R.id.imgCuppings);
+        imgCoffees = findViewById(R.id.imgCoffees);
+        imgRoasts = findViewById(R.id.imgRoasts);
+
+        imgCuppings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(UserDashboard.this, ViewCuppings.class));
+            }
         });
 
-        buttonEditAccount = findViewById(R.id.buttonEdit);
-        buttonEditAccount.setOnClickListener(view -> {
-            replaceFragment(new EditProfile());
+        imgCoffees.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(UserDashboard.this, ViewCoffees.class));
+            }
         });
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.landing_page), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+        imgRoasts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(UserDashboard.this, ViewRoasts.class));
+            }
         });
-
-        // Initialize ListView for previous cuppings
-        previousCuppings = findViewById(R.id.previousCuppings);
-
-        // Load the last 5 cuppings from the database and update the ListView
-        loadLastFiveCuppings();
-    }
-
-    private void loadLastFiveCuppings() {
-        CuppingDao cuppingDao = new CuppingDao(this);  // Create an instance of CuppingDao
-        List<Cupping> lastFiveCuppings = cuppingDao.getLastFiveCuppings();
-
-        // Convert the Cupping objects to a descriptive string format for display
-        cuppingDescriptions.clear();  // Clear previous entries
-        for (Cupping cupping : lastFiveCuppings) {
-            cuppingDescriptions.add(cupping.getDate() + " - " + cupping.getCoffeeName() + " (Score: " + cupping.getTotalScore() + ")");
-        }
-
-        // Update ListView with cupping descriptions
-        arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, cuppingDescriptions);
-        previousCuppings.setAdapter(arrayAdapter);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        Log.d("LandingPage", "onCreateOptionsMenu called");
+        // Inflate the menu; this adds items to the action bar if it is present.
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main_menu, menu);
         return true;
     }
 
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here
         switch (item.getItemId()) {
-            case R.id.cCupping:
-                Intent intent = new Intent(UserDashboard.this, AddCupping.class);
-                startActivity(intent);
+            case R.id.home:
+                // Redirect to UserDashboard (already on UserDashboard in this case, so maybe refresh)
+                Intent dashboardIntent = new Intent(this, UserDashboard.class);
+                startActivity(dashboardIntent);
                 return true;
 
-            case R.id.cForm:
-                Toast.makeText(getApplicationContext(), "Start Create Form Activity", Toast.LENGTH_SHORT).show();
+            case R.id.profile:
+                // Open the EditProfile fragment
+                replaceFragment(new EditProfile());
                 return true;
 
-            case R.id.vCupping:
-                Toast.makeText(getApplicationContext(), "Start View Cuppings Activity", Toast.LENGTH_SHORT).show();
+            case R.id.logout:
+                // Redirect to MainActivity for logging out
+                Intent logoutIntent = new Intent(this, MainActivity.class);
+                startActivity(logoutIntent);
+                finish(); // Optionally finish the current activity
                 return true;
 
-            case R.id.vCoffee:
-                Toast.makeText(getApplicationContext(), "Start View Coffees Activity", Toast.LENGTH_SHORT).show();
-                return true;
-
-            case R.id.vRoast:
-                Toast.makeText(getApplicationContext(), "Start View Roasts Activity", Toast.LENGTH_SHORT).show();
-                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
     }
 
     private void replaceFragment(Fragment fragment) {

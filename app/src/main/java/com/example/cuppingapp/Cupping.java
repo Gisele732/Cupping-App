@@ -1,6 +1,8 @@
 package com.example.cuppingapp;
 
-public class Cupping {
+import java.io.Serializable;
+
+public class Cupping implements Serializable {
     private String coffeeName;
     private int cuppingID;
     private int coffeeID;
@@ -39,6 +41,12 @@ public class Cupping {
         this.totalScore = totalScore;
     }
 
+    @Override
+    public String toString() {
+        return date + " - " + coffeeName + " (Score: " + totalScore + ")";
+    }
+
+
     public String getDate() {
         return date;
     }
@@ -46,6 +54,12 @@ public class Cupping {
     public int getCoffeeID() {
         return coffeeID;
     }
+
+    public int getCuppingID() {
+        return cuppingID;
+    }
+
+    public int getRoastID() { return roastID; }
 
     public float getTotalScore() {
         return totalScore;
@@ -57,5 +71,41 @@ public class Cupping {
 
     public void setCoffeeName(String coffeeName) {
         this.coffeeName = coffeeName;
+    }
+
+    public int getAcidity() { return acidity;}
+
+    public int getFlavour() { return flavour;}
+
+    public int getSweetness() { return sweetness;}
+
+    public int getBitterness() { return bitterness;}
+
+    public int getTactile() { return tactile;}
+
+    public int getBalance() { return balance;}
+
+    public String getNotes() { return notes;}
+
+    public void setAcidity(int i) {
+        this.acidity = i;
+    }
+    public void setFlavour(int i) {
+        this.flavour = i;
+    }
+    public void setBitterness(int i) {
+        this.bitterness = i;
+    }
+    public void setSweetness(int i) {
+        this.sweetness = i;
+    }
+    public void setTactile(int i) {
+        this.tactile = i;
+    }
+    public void setBalance(int i) {
+        this.balance = i;
+    }
+    public void setNotes(String i) {
+        this.notes = i;
     }
 }
