@@ -1,5 +1,6 @@
 package com.example.cuppingapp;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +12,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cuppingapp.CuppingDao;
+
+import java.util.Calendar;
 
 public class AddCuppingActivity extends AppCompatActivity {
 
@@ -47,6 +50,29 @@ public class AddCuppingActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        // Show DatePickerDialog when date EditText is clicked
+        editTextDate.setOnClickListener(v -> showDatePickerDialog());
+    }
+
+    // Method to show the DatePickerDialog
+    private void showDatePickerDialog() {
+        final Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        // Create and show the DatePickerDialog
+        DatePickerDialog datePickerDialog = new DatePickerDialog(
+                this,
+                (view, selectedYear, selectedMonth, selectedDay) -> {
+                    // Set the selected date into the EditText
+                    String date = selectedDay + "/" + (selectedMonth + 1) + "/" + selectedYear;
+                    editTextDate.setText(date);
+                },
+                year, month, day
+        );
+        datePickerDialog.show();
     }
 
     private void saveCupping() {
