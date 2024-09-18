@@ -45,10 +45,27 @@ public class CoffeeDao {
         }
     }
 
-    // Fetch all coffees
-    public Cursor getAllCoffees() {
+    // CoffeeDao.java
+    public List<Coffee> getAllCoffees() {
+        List<Coffee> coffeeList = new ArrayList<>();
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        return db.query(DatabaseHelper.TABLE_COFFEES, null, null, null, null, null, null);
+        Cursor cursor = db.rawQuery("SELECT * FROM coffees", null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                int coffeeID = cursor.getInt(cursor.getColumnIndexOrThrow("coffeeID"));
+                String coffeeName = cursor.getString(cursor.getColumnIndexOrThrow("name"));
+                String origin = cursor.getString(cursor.getColumnIndexOrThrow("origin"));
+                String process = cursor.getString(cursor.getColumnIndexOrThrow("process"));
+                String varietal = cursor.getString(cursor.getColumnIndexOrThrow("varietal"));
+                // Add other coffee fields if needed
+
+                Coffee coffee = new Coffee(coffeeID, coffeeName, origin, process, varietal);
+                coffeeList.add(coffee);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return coffeeList;
     }
 
     public List<String> getAllCoffeeNames() {

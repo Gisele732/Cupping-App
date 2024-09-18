@@ -15,5 +15,9 @@ public class Roast {
         this.date = date;
     }
 
+    public String getBatchNumber() { return batchNumber; }
+
+    public int getRoastID() { return roastID; }
+
     // Getters and Setters
 }

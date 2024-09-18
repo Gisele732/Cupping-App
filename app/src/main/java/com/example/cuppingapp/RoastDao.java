@@ -45,10 +45,27 @@ public class RoastDao {
     }
 
     // Fetch all roasts
-    public Cursor getAllRoasts() {
+    public List<Roast> getAllRoasts() {
+        List<Roast> roastList = new ArrayList<>();
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        return db.query(DatabaseHelper.TABLE_ROASTS, null, null, null, null, null, null);
+        Cursor cursor = db.rawQuery("SELECT * FROM roasts", null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                int roastID = cursor.getInt(cursor.getColumnIndexOrThrow("roastID"));
+                int coffeeID = cursor.getInt(cursor.getColumnIndexOrThrow("coffeeID"));
+                String batchNumber = cursor.getString(cursor.getColumnIndexOrThrow("batchNumber"));
+                String roasterName = cursor.getString(cursor.getColumnIndexOrThrow("roasterName"));
+                String date = cursor.getString(cursor.getColumnIndexOrThrow("date"));
+
+                Roast roast = new Roast(roastID, coffeeID, batchNumber, roasterName, date);
+                roastList.add(roast);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return roastList;
     }
+
 
     public List<String> getAllRoastNames() {
         List<String> roastNames = new ArrayList<>();

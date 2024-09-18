@@ -7,6 +7,7 @@ import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.intent.Intents.intended;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
 import androidx.test.core.app.ActivityScenario;
 import androidx.test.espresso.action.ViewActions;
@@ -44,11 +45,17 @@ public class AddCuppingTest {
         String testDate = "2024-09-13";
 
         // Fill out the form
-        onView(withId(R.id.editTextCoffee))  // Replace with the actual ID of coffee input
-                .perform(ViewActions.typeText("1"), ViewActions.closeSoftKeyboard());
+        // Select a coffee from the Coffee Spinner
+        onView(withId(R.id.spinnerCoffees)) // Replace with the actual Spinner ID for coffee
+                .perform(click()); // Open the spinner
+        onView(withText("Colombia Huila"))
+                .perform(click()); // Select the coffee
 
-        onView(withId(R.id.editTextRoast))  // Replace with the actual ID of roast input
-                .perform(ViewActions.typeText("1"), ViewActions.closeSoftKeyboard());
+        // Select a roast from the Roast Spinner
+        onView(withId(R.id.spinnerRoasts)) // Replace with the actual Spinner ID for roast
+                .perform(click()); // Open the spinner
+        onView(withText("Batch003"))
+                .perform(click()); // Select the roast
 
         onView(withId(R.id.editTextDate))  // Set a date
                 .perform(ViewActions.typeText(testDate), ViewActions.closeSoftKeyboard());

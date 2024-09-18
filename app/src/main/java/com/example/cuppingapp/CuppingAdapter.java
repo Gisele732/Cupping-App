@@ -42,7 +42,7 @@ public class CuppingAdapter extends ArrayAdapter<Cupping> {
         ImageView iconDelete = convertView.findViewById(R.id.iconDelete);
 
         // Set the text for the cupping
-        textViewCupping.setText(cupping.getDate() + " - " + cupping.getCoffeeName() + " - Score: " + cupping.getTotalScore());
+        textViewCupping.setText(cupping.getDate() + "\n" + cupping.getCoffeeName() + "\nScore: " + cupping.getTotalScore());
 
         // Set click listener for the edit icon
         iconEdit.setOnClickListener(v -> {

@@ -9,19 +9,17 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/editTextCoffee"
+        <Spinner
+            android:id="@+id/spinnerCoffees"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/coffee_id"
-            android:inputType="number" />
+            android:prompt="@string/select_coffee" />
 
-        <EditText
-            android:id="@+id/editTextRoast"
+        <Spinner
+            android:id="@+id/spinnerRoasts"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/roast_id"
-            android:inputType="number" />
+            android:prompt="@string/select_roast" />
 
         <EditText
             android:id="@+id/editTextDate"

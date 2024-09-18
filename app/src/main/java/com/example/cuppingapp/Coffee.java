@@ -15,5 +15,7 @@ public class Coffee {
         this.varietal = varietal;
     }
 
-    // Getters and Setters
+    public String getCoffeeName() { return name; }
+
+    public int getCoffeeID() { return coffeeID; }
 }
