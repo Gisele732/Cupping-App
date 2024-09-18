@@ -1,6 +1,8 @@
 package com.example.cuppingapp;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
@@ -32,11 +34,19 @@ public class AddCuppingActivity extends AppCompatActivity {
         balance = findViewById(R.id.ratingBarBalance);
         notes = findViewById(R.id.editTextNotes);
         Button buttonSaveCupping = findViewById(R.id.buttonSaveCupping);
+        Button buttonCancelCupping = findViewById(R.id.buttonCancel);
 
         cuppingDao = new CuppingDao(this);
 
         // Set onClick listener for saving cupping
         buttonSaveCupping.setOnClickListener(v -> saveCupping());
+        buttonCancelCupping.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AddCuppingActivity.this, ViewCuppings.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void saveCupping() {
@@ -59,7 +69,7 @@ public class AddCuppingActivity extends AppCompatActivity {
             long result = cuppingDao.insertCupping(coffeeID, roastID, date, acidityValue, flavourValue, sweetnessValue, bitternessValue, tactileValue, balanceValue, notesText);
 
             if (result > 0) {
-                Toast.makeText(this, "Cupping added successfully!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Cupping added successfully!", Toast.LENGTH_LONG).show(); //for better timing in tests.
                 finish();  // Close the activity and go back to the cupping list
             } else {
                 Toast.makeText(this, "Failed to add cupping.", Toast.LENGTH_SHORT).show();

@@ -55,5 +55,9 @@
     <string name="roast_id">Roast ID</string>
     <string name="createDate">Date</string>
     <string name="createAcidity">Acidity</string>
+    <string name="coming_soon">COMING SOON</string>
+    <string name="back">BACK</string>
+    <string name="save_cupping">Save Cupping</string>
+    <string name="addCuppingCancel">Cancel</string>
 
 </resources>

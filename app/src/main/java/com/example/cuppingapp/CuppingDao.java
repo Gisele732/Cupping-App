@@ -176,4 +176,38 @@ public class CuppingDao {
         return rowsDeleted > 0;
     }
 
+    public Cupping getCuppingByDate(String date) {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cupping cupping = null;
+
+        // Query to select cupping by date
+        String query = "SELECT * FROM " + DatabaseHelper.TABLE_CUPPINGS +
+                " WHERE " + DatabaseHelper.COLUMN_CUPPING_DATE + " = ?";
+
+        Cursor cursor = db.rawQuery(query, new String[]{date});
+
+        if (cursor != null && cursor.moveToFirst()) {
+            int cuppingID = cursor.getInt(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_CUPPING_ID));
+            int coffeeID = cursor.getInt(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_CUPPING_COFFEE_ID));
+            int roastID = cursor.getInt(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_CUPPING_ROAST_ID));
+            int acidity = cursor.getInt(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_CUPPING_ACIDITY));
+            int flavour = cursor.getInt(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_CUPPING_FLAVOUR));
+            int sweetness = cursor.getInt(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_CUPPING_SWEETNESS));
+            int bitterness = cursor.getInt(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_CUPPING_BITTERNESS));
+            int tactile = cursor.getInt(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_CUPPING_TACTILE));
+            int balance = cursor.getInt(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_CUPPING_BALANCE));
+            float totalScore = cursor.getFloat(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_CUPPING_TOTAL_SCORE));
+            String notes = cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_CUPPING_NOTES));
+
+            // Assuming you want to retrieve coffeeName too if needed, you might need to join with coffee table
+            cupping = new Cupping(cuppingID, coffeeID, roastID, date, acidity, flavour, sweetness, bitterness, tactile, balance, totalScore, notes, "");
+        }
+
+        if (cursor != null) {
+            cursor.close();
+        }
+
+        return cupping;
+    }
+
 }
