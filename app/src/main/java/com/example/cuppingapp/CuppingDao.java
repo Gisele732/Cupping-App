@@ -21,7 +21,7 @@ public class CuppingDao {
         ContentValues values = new ContentValues();
 
         // Calculate the totalScore by averaging the attributes
-        float totalScore = (acidity + flavour + sweetness + bitterness + tactile + balance) / 6;
+        float totalScore = (acidity + flavour + sweetness + bitterness + tactile + balance) / 6.0f;
 
         values.put(DatabaseHelper.COLUMN_CUPPING_COFFEE_ID, coffeeID);
         values.put(DatabaseHelper.COLUMN_CUPPING_ROAST_ID, roastID);
@@ -36,6 +36,10 @@ public class CuppingDao {
         values.put(DatabaseHelper.COLUMN_CUPPING_NOTES, notes);
 
         return db.insert(DatabaseHelper.TABLE_CUPPINGS, null, values);
+    }
+
+    public float calculateTotalScore(int acidity, int flavour, int sweetness, int bitterness, int tactile, int balance) {
+        return (acidity + flavour + sweetness + bitterness + tactile + balance) / 6.0f;
     }
 
     // Method to insert dummy data

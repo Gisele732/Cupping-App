@@ -20,6 +20,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import android.content.Context;
 
@@ -82,5 +83,29 @@ public class AddCuppingTest {
         // Check if the cupping is not null and assert your conditions
         assertNotNull("Cupping should not be null", cupping);
         assertEquals(testDate, cupping.getDate());
+    }
+
+    @Test
+    public void testCancelButton() {
+        ActivityScenario<AddCuppingActivity> scenario = ActivityScenario.launch(AddCuppingActivity.class);
+
+        // Fill some fields
+        onView(withId(R.id.editTextDate)).perform(typeText("2024-09-13"),
+                ViewActions.closeSoftKeyboard());
+
+        /* struggling with this test as it won't scroll down to the cancel button, even with
+        an extra swipe up step added */
+        // Scroll to the Cancel button and then click it
+        onView(withId(R.id.ratingBarBalance)).perform(ViewActions.swipeUp());
+
+        onView(withId(R.id.buttonCancel))
+                .perform(ViewActions.swipeUp(),
+                        ViewActions.click());
+
+        // Verify that we're back on the ViewCuppings activity
+        intended(hasComponent(ViewCuppings.class.getName()));
+
+        // Optional: Verify that no cupping was saved
+        assertNull("Cupping should not be saved", cuppingDao.getCuppingByDate("2024-09-13"));
     }
 }

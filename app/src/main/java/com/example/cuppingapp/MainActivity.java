@@ -19,6 +19,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
 
+
     private EditText editTextUsername, editTextPassword;
     private Button buttonLogin;
     Button buttonSignUp;
@@ -33,19 +34,20 @@ public class MainActivity extends AppCompatActivity {
         CoffeeDao coffeeDao = new CoffeeDao(this);
         RoastDao roastDao = new RoastDao(this);
         CuppingDao cuppingDao = new CuppingDao(this);
+        UserDao userDao = new UserDao(this);
 
         // Insert dummy data only once
         if (shouldInsertDummyData()) {
             coffeeDao.insertDummyCoffees();
             roastDao.insertDummyRoasts();
             cuppingDao.insertDummyData();
+            userDao.insertDummyData();
         }
 
         // Initialize UI elements\
         buttonLogin = findViewById(R.id.buttonLogin);
         buttonSignUp = findViewById(R.id.buttonSignUp);
 
-        // TODO WHERE IS MY TOAST MESSAGE FOR UNSUCCESSFUL LOGIN??
         // Set a click listener for the login button
         buttonLogin.setOnClickListener(view -> {
             editTextUsername = findViewById(R.id.editTextUsername);
@@ -53,8 +55,6 @@ public class MainActivity extends AppCompatActivity {
 
             String username = editTextUsername.getText().toString();
             String password = editTextPassword.getText().toString();
-
-            UserDao userDao = new UserDao(this);
             boolean isValid = userDao.checkUser(username, password);
 
             if (isValid) {
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             } else
             {
-                Toast.makeText(this, "Invalid Login", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Invalid Login", Toast.LENGTH_LONG).show();
             }
 
         });

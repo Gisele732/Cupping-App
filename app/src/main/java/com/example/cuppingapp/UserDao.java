@@ -117,5 +117,21 @@ public class UserDao {
         }
         return null;
     }
+
+    public boolean isUserExists(String username) {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor cursor = db.query(DatabaseHelper.TABLE_USERS,
+                new String[]{DatabaseHelper.COLUMN_USER_NAME},
+                DatabaseHelper.COLUMN_USER_NAME + " = ?",
+                new String[]{username},
+                null, null, null);
+        boolean exists = cursor.moveToFirst();
+        cursor.close();
+        return exists;
+    }
+
+    public void insertDummyData() {
+        insertUser("Anne-Lise", "annelise@mail.com", "1234");
+    }
 }
 
