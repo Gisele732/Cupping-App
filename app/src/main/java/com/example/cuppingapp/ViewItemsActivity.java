@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ListView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
@@ -68,12 +69,43 @@ public class ViewItemsActivity extends AppCompatActivity {
                 openDetailFragment(selectedCoffee);
             } else if (itemType == ItemType.ROAST) {
                 Roast selectedRoast = (Roast) parent.getItemAtPosition(position);
-                openDetailFragment(selectedRoast);
+
+                // Create the RoastDetailFragment and pass the Roast object
+                RoastDetailFragment fragment = new RoastDetailFragment();
+
+                // Pass the selected Roast object via Bundle
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("selectedRoast", selectedRoast); // Ensure Roast implements Serializable or Parcelable
+                fragment.setArguments(bundle);
+
+                // Replace the fragment container with the details fragment
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.framelayout, fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
             } else {
-                Cupping selectedCupping = (Cupping) parent.getItemAtPosition(position);
-                openDetailFragment(selectedCupping);
+                FragmentTransaction fragmentTransaction = getFragmentTransaction(position);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
             }
         });
+    }
+
+    private @NonNull FragmentTransaction getFragmentTransaction(int position) {
+        Cupping selectedCupping = cuppingList.get(position);
+
+        // Create the fragment and pass the cuppingID instead of the whole object
+        CuppingDetailFragment fragment = new CuppingDetailFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt("cuppingID", selectedCupping.getCuppingID());  // Pass cuppingID
+        fragment.setArguments(bundle);
+
+        // Replace the fragment to display the cupping details
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.framelayout, fragment);
+        return fragmentTransaction;
     }
 
     @Override

@@ -54,13 +54,17 @@ public class CuppingDetailFragment extends Fragment {
 
         // Get the selected cupping from the arguments
         if (getArguments() != null) {
-            cupping = (Cupping) getArguments().getSerializable("selectedCupping");
-        }
+            int cuppingID = getArguments().getInt("cuppingID");
 
-        if (cupping != null) {
-            loadCuppingDetails(view);
-        } else {
-            Toast.makeText(getContext(), "Failed to load the cupping details.", Toast.LENGTH_SHORT).show();
+            // Retrieve the full cupping object from the database
+            cupping = cuppingDao.getCuppingById(cuppingID);
+
+            // Ensure cupping data is loaded immediately
+            if (cupping != null) {
+                loadCuppingDetails(view);  // Load details right after retrieving the cupping object
+            } else {
+                Toast.makeText(getContext(), "Failed to load the cupping details.", Toast.LENGTH_SHORT).show();
+            }
         }
 
         // Handle update button click
@@ -90,16 +94,20 @@ public class CuppingDetailFragment extends Fragment {
     }
 
     private void loadCuppingDetails(View view) {
-        editTextDate.setText(cupping.getDate());
-        editTextNotes.setText(cupping.getNotes());
-        ratingBarAcidity.setRating(cupping.getAcidity());
-        ratingBarFlavour.setRating(cupping.getFlavour());
-        ratingBarSweetness.setRating(cupping.getSweetness());
-        ratingBarBitterness.setRating(cupping.getBitterness());
-        ratingBarTactile.setRating(cupping.getTactile());
-        ratingBarBalance.setRating(cupping.getBalance());
-        Log.d("CuppingDetailFragment", "Cupping Data: " + cupping.getDate() + ", " + cupping.getAcidity());
-
+        // Check if the cupping object has valid data
+        if (cupping != null) {
+            editTextDate.setText(cupping.getDate());
+            editTextNotes.setText(cupping.getNotes());
+            ratingBarAcidity.setRating(cupping.getAcidity());
+            ratingBarFlavour.setRating(cupping.getFlavour());
+            ratingBarSweetness.setRating(cupping.getSweetness());
+            ratingBarBitterness.setRating(cupping.getBitterness());
+            ratingBarTactile.setRating(cupping.getTactile());
+            ratingBarBalance.setRating(cupping.getBalance());
+            Log.d("CuppingDetailFragment", "Cupping Data: " + cupping.getDate() + ", " + cupping.getAcidity());
+        } else {
+            Log.e("CuppingDetailFragment", "Cupping object is null");
+        }
     }
 
     private void updateCupping() {
