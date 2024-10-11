@@ -64,5 +64,21 @@
     <string name="cuppings">CUPPINGS</string>
     <string name="coffees">COFFEES</string>
     <string name="roasts">ROASTS</string>
+    <string name="add_coffee">ADD COFFEE</string>
+    <string name="add_roast">ADD ROAST</string>
+    <string name="origin">Origin</string>
+    <string name="coffee_name">Coffee Name</string>
+    <string name="coffee_id_hint">Coffee ID</string>
+    <string name="coffee_process">Coffee Process</string>
+    <string name="coffee_varietal">Coffee Varietal</string>
+    <string name="add_coffee_btn">Add Coffee</string>
+    <string name="add_roast_btn">Add Roast</string>
+    <string name="roast_date">Roast Date</string>
+    <string name="roaster_name">Roaster Name</string>
+    <string name="batch_number">Batch Number</string>
+    <string name="coffee_id_roast">Coffee ID</string>
+    <string name="roast_id_hint">Roast ID</string>
+    <string name="roast_id_list">Roast ID</string>
+    <string name="roast_id_list2">Roast ID</string>
 
 </resources>

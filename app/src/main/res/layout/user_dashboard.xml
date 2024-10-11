@@ -38,6 +38,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="fitCenter"
+                style="@style/background_image"
                 android:src="@drawable/ic_cuppings"/>
             <TextView
                 android:id="@+id/userDashboardCuppingText"
@@ -60,6 +61,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="fitCenter"
+                style="@style/background_image"
                 android:src="@drawable/ic_coffees" />
             <TextView
                 android:id="@+id/userDashboardCoffeesText"
@@ -82,6 +84,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="fitCenter"
+                style="@style/background_image"
                 android:src="@drawable/ic_roasts" />
             <TextView
                 android:id="@+id/userDashboardRoastsText"

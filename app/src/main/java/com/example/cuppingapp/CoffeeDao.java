@@ -81,4 +81,25 @@ public class CoffeeDao {
         return coffeeNames;
     }
 
+    public void addCoffee(Coffee coffee) {
+        // Get writable database
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        // Create ContentValues to hold the coffee details
+        ContentValues values = new ContentValues();
+        values.put(DatabaseHelper.COLUMN_COFFEE_NAME, coffee.getName());
+        values.put(DatabaseHelper.COLUMN_COFFEE_ORIGIN, coffee.getOrigin());
+        values.put(DatabaseHelper.COLUMN_COFFEE_PROCESS, coffee.getProcess());   // Add process if available
+        values.put(DatabaseHelper.COLUMN_COFFEE_VARIETAL, coffee.getVarietal()); // Add varietal if available
+
+        // Insert the row into the database, auto-generating the coffeeID
+        long coffeeID = db.insert(DatabaseHelper.TABLE_COFFEES, null, values);
+        coffee.setCoffeeID((int) coffeeID);
+
+        // Insert the row into the database
+        db.insert(DatabaseHelper.TABLE_COFFEES, null, values);
+
+        // Close the database connection
+        db.close();
+    }
 }

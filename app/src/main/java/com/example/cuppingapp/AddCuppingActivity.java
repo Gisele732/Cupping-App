@@ -61,7 +61,7 @@ public class AddCuppingActivity extends AppCompatActivity {
         buttonCancelCupping.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(AddCuppingActivity.this, ViewCuppings.class);
+                Intent intent = new Intent(AddCuppingActivity.this, ViewItemsActivity.class);
                 startActivity(intent);
             }
         });
@@ -97,7 +97,7 @@ public class AddCuppingActivity extends AppCompatActivity {
         // Create a list of Coffee Names to display in the Spinner
         List<String> coffeeNames = new ArrayList<>();
         for (Coffee coffee : coffeeList) {
-            coffeeNames.add(coffee.getCoffeeName());
+            coffeeNames.add(coffee.getName());
         }
 
         // Set up the Spinner with Coffee Names

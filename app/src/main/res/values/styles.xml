@@ -10,4 +10,7 @@
         <item name='android:shadowDy'>5</item>
         <item name='android:shadowRadius'>5</item>
     </style>
+    <style name="background_image">
+        <item name="android:alpha">.70</item>
+    </style>
 </resources>

@@ -80,4 +80,22 @@ public class RoastDao {
         return roastNames;
     }
 
+    public void addRoast(Roast roast) {
+        // Get writable database
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        // Create ContentValues to hold the roast details
+        ContentValues values = new ContentValues();
+        values.put(DatabaseHelper.COLUMN_ROAST_COFFEE_ID, roast.getCoffeeID());  // Foreign key to Coffee
+        values.put(DatabaseHelper.COLUMN_ROAST_BATCH_NUMBER, roast.getBatchNumber());
+        values.put(DatabaseHelper.COLUMN_ROAST_ROASTER_NAME, roast.getRoasterName());
+        values.put(DatabaseHelper.COLUMN_ROAST_DATE, roast.getDate());
+
+        // Insert the row into the database
+        db.insert(DatabaseHelper.TABLE_ROASTS, null, values);
+
+        // Close the database connection
+        db.close();
+    }
+
 }

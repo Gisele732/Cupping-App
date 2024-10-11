@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <EditText
+        android:id="@+id/editTextCoffeeID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/coffee_id_hint"
+        android:textSize="18sp"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/editTextCoffeeName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/coffee_name"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/editTextCoffeeOrigin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/origin"
+        android:textSize="18sp"
+        android:layout_marginTop="16dp"/>
+
+    <EditText
+        android:id="@+id/editTextProcess"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/coffee_process"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/editTextVarietal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/coffee_varietal"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/buttonAddCoffee"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add_coffee_btn"
+        android:layout_marginTop="24dp"/>
+</LinearLayout>

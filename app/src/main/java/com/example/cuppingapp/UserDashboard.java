@@ -31,24 +31,33 @@ public class UserDashboard extends AppCompatActivity {
         imgCoffees = findViewById(R.id.imgCoffees);
         imgRoasts = findViewById(R.id.imgRoasts);
 
+        // Link to ViewItemsActivity with ItemType.CUPPING
         imgCuppings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(UserDashboard.this, ViewCuppings.class));
+                Intent intent = new Intent(UserDashboard.this, ViewItemsActivity.class);
+                intent.putExtra("ITEM_TYPE", ItemType.CUPPING);
+                startActivity(intent);
             }
         });
 
+        // Link to ViewItemsActivity with ItemType.COFFEE
         imgCoffees.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(UserDashboard.this, ViewCoffees.class));
+                Intent intent = new Intent(UserDashboard.this, ViewItemsActivity.class);
+                intent.putExtra("ITEM_TYPE", ItemType.COFFEE);
+                startActivity(intent);
             }
         });
 
+        // Link to ViewItemsActivity with ItemType.ROAST
         imgRoasts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(UserDashboard.this, ViewRoasts.class));
+                Intent intent = new Intent(UserDashboard.this, ViewItemsActivity.class);
+                intent.putExtra("ITEM_TYPE", ItemType.ROAST);
+                startActivity(intent);
             }
         });
     }

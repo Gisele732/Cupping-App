@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/editTextRoastID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/roast_id_hint"
+        android:textSize="18sp"
+        android:inputType="number"/>
+
+    <EditText
+        android:id="@+id/editTextCoffeeID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/coffee_id_roast"
+        android:textSize="18sp"
+        android:inputType="number"/>
+
+    <EditText
+        android:id="@+id/editTextBatchNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/batch_number"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/editTextRoasterName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/roaster_name"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/editTextRoastDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/roast_date"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/buttonAddRoast"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add_roast_btn"
+        android:layout_marginTop="24dp"/>
+</LinearLayout>

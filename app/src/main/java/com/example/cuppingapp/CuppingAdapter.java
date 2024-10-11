@@ -47,7 +47,7 @@ public class CuppingAdapter extends ArrayAdapter<Cupping> {
         // Set click listener for the edit icon
         iconEdit.setOnClickListener(v -> {
             // Open an edit dialog or activity for modifying the cupping
-            ((ViewCuppings) context).openEditCuppingFragment(cupping);
+            ((ViewItemsActivity) context).openDetailFragment(cupping);
         });
 
         // Set click listener for the delete icon
