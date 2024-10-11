@@ -57,12 +57,14 @@ public class EditProfile extends Fragment {
             String newPassword = editNewPassword.getText().toString();
             String confirmPassword = editConfirmPassword.getText().toString();
 
-            if (newUsername.isEmpty() || newEmail.isEmpty() || currentPassword.isEmpty()) {
+            if (newUsername.isEmpty() || newEmail.isEmpty()) {
                 Toast.makeText(getContext(), "Please fill in all required fields.", Toast.LENGTH_SHORT).show();
+                return;
+            } else if (currentPassword.isEmpty()) {
+                Toast.makeText(getContext(), "Please enter current password.", Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            // TODO: THIS IS NOT WORKING
             // Verify the current password using the old username
             boolean isCurrentPasswordCorrect = userDao.checkUser(currentUserName, currentPassword);
             if (!isCurrentPasswordCorrect) {

@@ -20,11 +20,6 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
-    <FrameLayout
-        android:id="@+id/framelayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -32,33 +27,71 @@
         android:gravity="center"
         android:padding="16dp">
 
-        <ImageView
-            android:id="@+id/imgCuppings"
-            android:layout_width="match_parent"
+        <FrameLayout
+            android:id="@+id/frameLayoutCupping"
+            android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            android:src="@drawable/ic_cuppings"
-            android:contentDescription="@string/cuppingsDescription" />
+            android:layout_weight="1">
 
-        <ImageView
-            android:id="@+id/imgCoffees"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:src="@drawable/ic_coffees"
-            android:contentDescription="@string/coffeesDescription"
-            android:padding="16dp" />
+            <ImageView
+                android:id="@+id/imgCuppings"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_cuppings"/>
+            <TextView
+                android:id="@+id/userDashboardCuppingText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textAlignment="center"
+                android:gravity="center"
+                style="@style/header_text"
+                android:text="@string/cuppings"/>
+        </FrameLayout>
 
-        <ImageView
-            android:id="@+id/imgRoasts"
-            android:layout_width="match_parent"
+        <FrameLayout
+            android:id="@+id/frameLayoutCoffees"
+            android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            android:src="@drawable/ic_roasts"
-            android:contentDescription="@string/roastsDescription"
-            android:padding="16dp" />
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/imgCoffees"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_coffees" />
+            <TextView
+                android:id="@+id/userDashboardCoffeesText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textAlignment="center"
+                android:gravity="center"
+                style="@style/header_text"
+                android:text="@string/coffees"/>
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frameLayoutRoasts"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/imgRoasts"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_roasts" />
+            <TextView
+                android:id="@+id/userDashboardRoastsText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textAlignment="center"
+                android:gravity="center"
+                style="@style/header_text"
+                android:text="@string/roasts"/>
+        </FrameLayout>
 
     </LinearLayout>
-    </FrameLayout>
-
 </LinearLayout>
