@@ -80,5 +80,13 @@
     <string name="roast_id_hint">Roast ID</string>
     <string name="roast_id_list">Roast ID</string>
     <string name="roast_id_list2">Roast ID</string>
+    <string name="roast_id_detail">Roast ID</string>
+    <string name="batch_number_detail">Batch Number</string>
+    <string name="roaster_name_detail">Roaster Name</string>
+    <string name="roast_date_detail">Roast Date</string>
+    <string name="process_detail">Process</string>
+    <string name="varietal_detail">Varietal</string>
+    <string name="origin_detail">Origin</string>
+    <string name="coffee_name_detail">Coffee Name</string>
 
 </resources>

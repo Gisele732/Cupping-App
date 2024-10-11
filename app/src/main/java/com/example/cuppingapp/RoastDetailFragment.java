@@ -25,12 +25,25 @@ public class RoastDetailFragment extends Fragment {
 
         // Bind roast details to UI elements
         if (selectedRoast != null) {
+            // Roast ID
             TextView roastIDTextView = view.findViewById(R.id.textViewRoastID);
-            roastIDTextView.setText(selectedRoast.getRoastID());
+            roastIDTextView.setText(String.valueOf(selectedRoast.getRoastID()));
 
-            // Add more views to show roast details if needed
+            // Batch Number
+            TextView batchNumberTextView = view.findViewById(R.id.textViewBatchNumber);
+            batchNumberTextView.setText(selectedRoast.getBatchNumber());
+
+            // Roaster Name
+            TextView roasterNameTextView = view.findViewById(R.id.textViewRoasterName);
+            roasterNameTextView.setText(selectedRoast.getRoasterName());
+
+            // Date
+            TextView roastDateTextView = view.findViewById(R.id.textViewRoastDate);
+            roastDateTextView.setText(selectedRoast.getDate());
         }
+
 
         return view;
     }
 }
+

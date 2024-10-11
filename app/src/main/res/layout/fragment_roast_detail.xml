@@ -3,15 +3,42 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:background="@color/white"
     android:padding="16dp">
 
+    <!-- Roast ID -->
     <TextView
         android:id="@+id/textViewRoastID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/roast_id_list2"
+        android:text="@string/roast_id_detail"
         android:textSize="24sp"
         android:textStyle="bold" />
 
-    <!-- Add more views for detailed info -->
+    <!-- Batch Number -->
+    <TextView
+        android:id="@+id/textViewBatchNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/batch_number_detail"
+        android:textSize="18sp"
+        android:layout_marginTop="8dp" />
+
+    <!-- Roaster Name -->
+    <TextView
+        android:id="@+id/textViewRoasterName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/roaster_name_detail"
+        android:textSize="18sp"
+        android:layout_marginTop="8dp" />
+
+    <!-- Roast Date -->
+    <TextView
+        android:id="@+id/textViewRoastDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/roast_date_detail"
+        android:textSize="18sp"
+        android:layout_marginTop="8dp" />
 </LinearLayout>

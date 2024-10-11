@@ -2,16 +2,44 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/white"
     android:orientation="vertical"
     android:padding="16dp">
 
+    <!-- Coffee Name -->
     <TextView
         android:id="@+id/textViewCoffeeName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Coffee Name"
+        android:text="@string/coffee_name_detail"
         android:textSize="24sp"
         android:textStyle="bold" />
 
-    <!-- Add more views for detailed info -->
+    <!-- Coffee Origin -->
+    <TextView
+        android:id="@+id/textViewCoffeeOrigin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/origin_detail"
+        android:textSize="18sp"
+        android:layout_marginTop="8dp" />
+
+    <!-- Coffee Process -->
+    <TextView
+        android:id="@+id/textViewCoffeeProcess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/process_detail"
+        android:textSize="18sp"
+        android:layout_marginTop="8dp" />
+
+    <!-- Coffee Varietal -->
+    <TextView
+        android:id="@+id/textViewCoffeeVarietal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/varietal_detail"
+        android:textSize="18sp"
+        android:layout_marginTop="8dp" />
+
 </LinearLayout>

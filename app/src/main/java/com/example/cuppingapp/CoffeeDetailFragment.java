@@ -25,10 +25,21 @@ public class CoffeeDetailFragment extends Fragment {
 
         // Bind coffee details to UI elements
         if (selectedCoffee != null) {
+            // Bind Coffee Name
             TextView coffeeNameTextView = view.findViewById(R.id.textViewCoffeeName);
             coffeeNameTextView.setText(selectedCoffee.getName());
 
-            // Add more views to show coffee details if needed
+            // Bind Coffee Origin
+            TextView coffeeOriginTextView = view.findViewById(R.id.textViewCoffeeOrigin);
+            coffeeOriginTextView.setText(selectedCoffee.getOrigin());
+
+            // Bind Coffee Process
+            TextView coffeeProcessTextView = view.findViewById(R.id.textViewCoffeeProcess);
+            coffeeProcessTextView.setText(selectedCoffee.getProcess());
+
+            // Bind Coffee Varietal
+            TextView coffeeVarietalTextView = view.findViewById(R.id.textViewCoffeeVarietal);
+            coffeeVarietalTextView.setText(selectedCoffee.getVarietal());
         }
 
         return view;
