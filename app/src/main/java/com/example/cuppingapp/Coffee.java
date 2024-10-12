@@ -58,4 +58,12 @@ public class Coffee implements Serializable {
     public void setVarietal(String varietal) {
         this.varietal = varietal;
     }
+
+    public void setName(String newCoffeeName) {
+        this.name = newCoffeeName;
+    }
+
+    public void setOrigin(String newCoffeeOrigin) {
+        this.origin = newCoffeeOrigin;
+    }
 }

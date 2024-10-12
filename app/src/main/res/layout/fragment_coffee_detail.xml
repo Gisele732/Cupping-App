@@ -7,39 +7,58 @@
     android:padding="16dp">
 
     <!-- Coffee Name -->
-    <TextView
-        android:id="@+id/textViewCoffeeName"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/editTextCoffeeName"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/coffee_name_detail"
+        android:hint="Coffee Name"
         android:textSize="24sp"
         android:textStyle="bold" />
 
     <!-- Coffee Origin -->
-    <TextView
-        android:id="@+id/textViewCoffeeOrigin"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/editTextCoffeeOrigin"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/origin_detail"
+        android:hint="Coffee Origin"
         android:textSize="18sp"
         android:layout_marginTop="8dp" />
 
     <!-- Coffee Process -->
-    <TextView
-        android:id="@+id/textViewCoffeeProcess"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/editTextCoffeeProcess"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/process_detail"
+        android:hint="Coffee Process"
         android:textSize="18sp"
         android:layout_marginTop="8dp" />
 
     <!-- Coffee Varietal -->
-    <TextView
-        android:id="@+id/textViewCoffeeVarietal"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/editTextCoffeeVarietal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/varietal_detail"
+        android:hint="Coffee Varietal"
         android:textSize="18sp"
         android:layout_marginTop="8dp" />
+
+    <!-- Update, Delete, Cancel Buttons -->
+    <Button
+        android:id="@+id/buttonUpdateCoffee"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update" />
+
+    <Button
+        android:id="@+id/buttonDeleteCoffee"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delete" />
+
+    <Button
+        android:id="@+id/buttonCancelCoffee"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cancel" />
 
 </LinearLayout>

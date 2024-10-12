@@ -102,4 +102,48 @@ public class CoffeeDao {
         // Close the database connection
         db.close();
     }
+
+    // Method to fetch a coffee by its ID
+    public Coffee getCoffeeById(int coffeeID) {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Coffee coffee = null;
+
+        // Query to fetch the coffee by ID
+        Cursor cursor = db.rawQuery("SELECT * FROM coffees WHERE coffeeID = ?", new String[]{String.valueOf(coffeeID)});
+
+        if (cursor.moveToFirst()) {
+            String name = cursor.getString(cursor.getColumnIndexOrThrow("name"));
+            String origin = cursor.getString(cursor.getColumnIndexOrThrow("origin"));
+            String process = cursor.getString(cursor.getColumnIndexOrThrow("process"));
+            String varietal = cursor.getString(cursor.getColumnIndexOrThrow("varietal"));
+
+            coffee = new Coffee(coffeeID, name, origin, process, varietal);
+        }
+
+        cursor.close();
+        return coffee;
+    }
+
+    // Method to update a coffee in the database
+    public boolean updateCoffee(Coffee coffee) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("name", coffee.getName());
+        values.put("origin", coffee.getOrigin());
+        values.put("process", coffee.getProcess());
+        values.put("varietal", coffee.getVarietal());
+
+        // Update the coffee where coffeeID matches
+        int rowsUpdated = db.update("coffees", values, "coffeeID = ?", new String[]{String.valueOf(coffee.getCoffeeID())});
+
+        return rowsUpdated > 0;
+    }
+
+    // Method to delete a coffee by its ID
+    public boolean deleteCoffee(int coffeeID) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        int rowsDeleted = db.delete("coffees", "coffeeID = ?", new String[]{String.valueOf(coffeeID)});
+        return rowsDeleted > 0;
+    }
 }

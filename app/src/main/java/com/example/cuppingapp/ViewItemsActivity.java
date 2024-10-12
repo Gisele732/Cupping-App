@@ -2,6 +2,7 @@ package com.example.cuppingapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -65,8 +66,23 @@ public class ViewItemsActivity extends AppCompatActivity {
         // Set item click listener to open details
         listViewItems.setOnItemClickListener((parent, view, position, id) -> {
             if (itemType == ItemType.COFFEE) {
-                Coffee selectedCoffee = (Coffee) parent.getItemAtPosition(position);
-                openDetailFragment(selectedCoffee);
+                Coffee selectedCoffee = coffeeList.get(position);  // Get the selected coffee
+
+                // Log the coffeeID
+                Log.d("ViewItemsActivity", "Selected Coffee ID: " + selectedCoffee.getCoffeeID());
+
+                // Create the CoffeeDetailFragment and pass the coffeeID
+                CoffeeDetailFragment fragment = new CoffeeDetailFragment();
+                Bundle bundle = new Bundle();
+                bundle.putInt("coffeeID", selectedCoffee.getCoffeeID());  // Pass coffeeID to fragment
+                fragment.setArguments(bundle);
+
+                // Replace the fragment to display coffee details
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.framelayout, fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
             } else if (itemType == ItemType.ROAST) {
                 Roast selectedRoast = (Roast) parent.getItemAtPosition(position);
 
