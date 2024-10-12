@@ -98,4 +98,51 @@ public class RoastDao {
         db.close();
     }
 
+    public boolean deleteRoast(int roastID) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        // Delete the cupping by cuppingID
+        int rowsDeleted = db.delete(DatabaseHelper.TABLE_ROASTS, "roastID = ?", new String[]{String.valueOf(roastID)});
+
+        // Return true if one or more rows were deleted, indicating success
+        return rowsDeleted > 0;
+    }
+
+    // Method to fetch a roast by its ID
+    public Roast getRoastById(int roastID) {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Roast roast = null;
+
+        // Query to fetch the roast by ID
+        Cursor cursor = db.rawQuery("SELECT * FROM roasts WHERE roastID = ?", new String[]{String.valueOf(roastID)});
+
+        if (cursor.moveToFirst()) {
+            // Extract fields from the cursor
+            int coffeeID = cursor.getInt(cursor.getColumnIndexOrThrow("coffeeID"));
+            String batchNumber = cursor.getString(cursor.getColumnIndexOrThrow("batchNumber"));
+            String roasterName = cursor.getString(cursor.getColumnIndexOrThrow("roasterName"));
+            String date = cursor.getString(cursor.getColumnIndexOrThrow("date"));
+
+            // Create a new Roast object and populate it with data from the cursor
+            roast = new Roast(roastID, coffeeID, batchNumber, roasterName, date);
+        }
+
+        cursor.close();
+        return roast;
+    }
+
+    // Method to update a roast in the database
+    public boolean updateRoast(Roast roast) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("batchNumber", roast.getBatchNumber());
+        values.put("roasterName", roast.getRoasterName());
+        values.put("date", roast.getDate());
+
+        // Update the roast where roastID matches
+        int rowsUpdated = db.update("roasts", values, "roastID = ?", new String[]{String.valueOf(roast.getRoastID())});
+
+        return rowsUpdated > 0;
+    }
 }

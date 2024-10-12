@@ -75,7 +75,7 @@ public class ViewItemsActivity extends AppCompatActivity {
 
                 // Pass the selected Roast object via Bundle
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("selectedRoast", selectedRoast); // Ensure Roast implements Serializable or Parcelable
+                bundle.putInt("roastID", selectedRoast.getRoastID());  // Pass roastID, not the full Roast object
                 fragment.setArguments(bundle);
 
                 // Replace the fragment container with the details fragment
