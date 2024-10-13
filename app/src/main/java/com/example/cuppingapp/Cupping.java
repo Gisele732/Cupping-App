@@ -61,16 +61,10 @@ public class Cupping implements Serializable {
 
     public int getRoastID() { return roastID; }
 
-    public float getTotalScore() {
-        return totalScore;
-    }
+    public float getTotalScore() { return totalScore; }
 
     public String getCoffeeName() {
         return coffeeName;
-    }
-
-    public void setCoffeeName(String coffeeName) {
-        this.coffeeName = coffeeName;
     }
 
     public int getAcidity() { return acidity;}

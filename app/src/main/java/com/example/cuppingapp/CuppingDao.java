@@ -15,6 +15,11 @@ public class CuppingDao {
         dbHelper = new DatabaseHelper(context);
     }
 
+    // Modify the constructor to accept DatabaseHelper
+    public CuppingDao(DatabaseHelper dbHelper) {
+        this.dbHelper = dbHelper;
+    }
+
     // Insert a new cupping
     public long insertCupping(int coffeeID, int roastID, String date, int acidity, int flavour, int sweetness, int bitterness, int tactile, int balance, String notes) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -22,6 +27,7 @@ public class CuppingDao {
 
         // Calculate the totalScore by averaging the attributes
         float totalScore = (acidity + flavour + sweetness + bitterness + tactile + balance) / 6.0f;
+        totalScore = Math.round(totalScore * 10) / 10.0f;  // Rounding to 1 decimal place
 
         values.put(DatabaseHelper.COLUMN_CUPPING_COFFEE_ID, coffeeID);
         values.put(DatabaseHelper.COLUMN_CUPPING_ROAST_ID, roastID);

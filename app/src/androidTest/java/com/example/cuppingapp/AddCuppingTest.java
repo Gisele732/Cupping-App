@@ -102,8 +102,8 @@ public class AddCuppingTest {
                 .perform(ViewActions.swipeUp(),
                         ViewActions.click());
 
-        // Verify that we're back on the ViewCuppings activity
-        intended(hasComponent(ViewCuppings.class.getName()));
+        // Verify that we're back on the ViewItemsActivity activity
+        intended(hasComponent(ViewItemsActivity.class.getName()));
 
         // Optional: Verify that no cupping was saved
         assertNull("Cupping should not be saved", cuppingDao.getCuppingByDate("2024-09-13"));

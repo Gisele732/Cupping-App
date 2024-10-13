@@ -52,5 +52,17 @@ dependencies {
     androidTestImplementation("androidx.test:rules:1.4.0")
     androidTestImplementation("androidx.test:core:1.4.0")
 
+    // JUnit for unit testing
+    testImplementation("junit:junit:4.13.2")  // Use 4.13.2 or any latest stable version
+
+    // Robolectric dependency
+    testImplementation("org.robolectric:robolectric:4.7.3")
+
+    // Mockito for mocking (if required)
+    testImplementation("org.mockito:mockito-core:3.11.2")
+
+    // Espresso for UI testing (if required for instrumentation tests)
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
+
 
 }
