@@ -46,10 +46,7 @@ public class CoffeeDaoTest {
         Coffee coffee = new Coffee("Colombia Huila", "Colombia", "Washed","Catuai");
 
         // Mock the DAO method to return the expected coffee object
-        when(mockDatabase.query(anyString(), any(), any(), any(), any(), any(), any())).thenReturn(null); // Adjust this if necessary for your query
-
-        // Assume that the database will return a valid coffee object
-        // If you are simulating actual data, you may want to mock Cursor behavior here
+        when(mockDatabase.query(anyString(), any(), any(), any(), any(), any(), any())).thenReturn(null);
 
         assertNotNull(coffee);
         assertEquals("Colombia Huila", coffee.getName());
