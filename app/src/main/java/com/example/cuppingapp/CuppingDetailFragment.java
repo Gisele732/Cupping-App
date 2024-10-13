@@ -80,6 +80,10 @@ public class CuppingDetailFragment extends Fragment {
 
         cuppingDao = new CuppingDao(requireContext());
 
+        // Request notification permission
+        requestNotificationPermission();
+
+
         // Get the selected cupping from the arguments
         if (getArguments() != null) {
             int cuppingID = getArguments().getInt("cuppingID");
@@ -344,6 +348,16 @@ public class CuppingDetailFragment extends Fragment {
 
         // Show the notification
         notificationManager.notify(1, builder.build());
+    }
+
+    private void requestNotificationPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {  // Android 13+
+            if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.POST_NOTIFICATIONS)
+                    != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(requireActivity(),
+                        new String[]{Manifest.permission.POST_NOTIFICATIONS}, 2);
+            }
+        }
     }
 
 }
